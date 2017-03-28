@@ -1,0 +1,19 @@
+.task-list__item {
+    border-bottom: 1px #ededed solid;
+    border-left: 1px #ededed solid;
+    border-right: 1px #ededed solid;
+    display: flex;
+    padding: 20px;
+}
+
+.task-list__item:first-child {
+    border-top: 1px #ededed solid;
+}
+
+.task-list__item-checkbox {
+    margin-right: 20px;
+}
+
+.task-list__item-name {
+    flex-grow: 1;
+}

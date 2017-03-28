@@ -8,6 +8,7 @@
 }
 
 .App-header {
+  align-items: center;
   background-color: #ededed;
   color: #000;
   display: flex;
@@ -26,3 +27,25 @@
   /*from { transform: rotate(0deg); }*/
   /*to { transform: rotate(360deg); }*/
 /*}*/
+
+
+.App-main {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.search__done {
+  margin-right: 20px;
+}
+
+.search__box {
+
+}
