@@ -11,18 +11,8 @@ class Categories extends Component {
 
     render() {
 
-        const categoryArray = [
-            {num: 1, subcategories: []},
-            {num: 2, subcategories: []},
-            {num: 3, subcategories: [
-                {num: 1, subcategories: []},
-                {num: 2, subcategories: []},
-                {num: 3, subcategories: []}
-            ]}
-        ];
-
-        const categoryItems = categoryArray.map((category) =>
-            <CategoryItem key={category.num.toString()} num={category.num} subcategories={category.subcategories}/>
+        const categoryItems = this.props.list.map((category) =>
+            <CategoryItem key={category.num.toString()} item={category} />
         );
 
         return (

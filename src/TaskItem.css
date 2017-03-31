@@ -10,6 +10,11 @@
     border-top: 1px #ededed solid;
 }
 
+
+.task-list__item:hover {
+    background-color: #efefef;
+}
+
 .task-list__item-checkbox {
     margin-right: 20px;
 }
