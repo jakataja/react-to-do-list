@@ -16,3 +16,8 @@
 .category-list__item__edit-icon {
     flex-grow: 1;
 }
+
+.category-list__item__back-icon {
+    display: none;
+    transform: rotateX(180deg);
+}

@@ -38,6 +38,7 @@ class CategoryItem extends Component {
                         <i className="icon-trash-empty"></i>
                     </span>
                     <span className="category-list__item__add-icon icon-plus"></span>
+                    <span className="category-list__item__back-icon icon-reply"></span>
                 </div>
                 <Subcategories list={this.props.item.subcategories} />
             </li>

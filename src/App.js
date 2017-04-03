@@ -12,8 +12,8 @@ class App extends Component {
         super(props);
         this.state = {
             list : [
-                {num: 1, name: "Category 1", subcategories: [], task: [{name: "To-do item 1"}] },
-                {num: 2, name: "Category 2", subcategories: [], task: [
+                {num: 1, name: "Category 1", subcategories: [], tasks: [{name: "To-do item 1"}] },
+                {num: 2, name: "Category 2", subcategories: [], tasks: [
                     {name: "To-do item 1"},
                     {name: "To-do item 2"}
                 ]},
@@ -21,12 +21,13 @@ class App extends Component {
                     {num: 1, name: "Subcategory 1", subcategories: []},
                     {num: 2, name: "Subcategory 2", subcategories: []},
                     {num: 3, name: "Subcategory 3", subcategories: []}
-                ], task: [
+                ], tasks: [
                     {name: "To-do item 1"},
                     {name: "To-do item 2"},
                     {name: "To-do item 3"}
                 ]}
-            ]
+            ],
+            mode: 0, // 0 - display, 1 - edit
         }
     }
 
@@ -50,7 +51,7 @@ class App extends Component {
         <ProgressBar />
         <main className="App-main">
             <Categories list={this.state.list} />
-            <Tasks />
+            <Tasks mode={this.state.mode} />
         </main>
       </div>
     );

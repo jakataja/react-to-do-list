@@ -41,6 +41,12 @@
       "css": "plus-squared-alt",
       "code": 61846,
       "src": "fontawesome"
+    },
+    {
+      "uid": "c6be5a58ee4e63a5ec399c2b0d15cf2c",
+      "css": "reply",
+      "code": 61714,
+      "src": "fontawesome"
     }
   ]
 }
