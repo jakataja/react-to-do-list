@@ -12,7 +12,10 @@ class Categories extends Component {
     render() {
 
         const categoryItems = this.props.list.map((category) =>
-            <CategoryItem key={category.num.toString()} item={category} />
+            <CategoryItem key={category.num.toString()}
+                          item={category}
+                          action={this.props.action}
+                          active={this.props.active} />
         );
 
         return (

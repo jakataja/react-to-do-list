@@ -8,8 +8,8 @@ class ProgressBar extends Component {
 
     render() {
         return (
-            <section className="progress-bar">
-                <div className="progress-bar__loader" ></div>
+            <section className="Progressbar">
+                <div className="Progressbar__loader" ></div>
             </section>
         );
     }

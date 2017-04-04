@@ -12,12 +12,17 @@ class App extends Component {
         super(props);
         this.state = {
             list : [
-                {num: 1, name: "Category 1", subcategories: [], tasks: [{name: "To-do item 1"}] },
-                {num: 2, name: "Category 2", subcategories: [], tasks: [
-                    {name: "To-do item 1"},
-                    {name: "To-do item 2"}
+                {num: 1, name: "Category 1", subcategories: [
+                    {num: 1, name: "Subcategory 1", subcategories: []},
+                    {num: 2, name: "Subcategory 2", subcategories: []}
+                ], tasks: [{name: "To-do item 1"}] },
+                {num: 2, name: "Category 2", subcategories: [
+                    {num: 2, name: "Subcategory 2", subcategories: []}
+                ], tasks: [
+                    {name: "To-do item 1"}
                 ]},
-                {num: 3, name: "Category 3", subcategories: [
+                {num: 3, name: "Category 3", subcategories: [], tasks: []},
+                {num: 4, name: "Category 4", subcategories: [
                     {num: 1, name: "Subcategory 1", subcategories: []},
                     {num: 2, name: "Subcategory 2", subcategories: []},
                     {num: 3, name: "Subcategory 3", subcategories: []}
@@ -28,34 +33,45 @@ class App extends Component {
                 ]}
             ],
             mode: 0, // 0 - display, 1 - edit
-        }
+            activeCategory: null,
+        };
+
+        this.onSelectCategory = this.onSelectCategory.bind(this);
     }
 
-  render() {
+    onSelectCategory(category) {
+        this.setState({
+            activeCategory: category
+        });
+    }
 
-    return (
-      <div className="App">
-        <section className="App-header">
-          <div>
-            <h2>To-Do List</h2>
-          </div>
-          <div className="search-wrapper">
-              <div className="search__done">
-                  <label><input type="checkbox" /> Show done</label>
+    render() {
+
+        return (
+          <div className="App">
+            <section className="App-header">
+              <div>
+                <h2>To-Do List</h2>
               </div>
-              <div className="search__box">
-                <input type="text" placeholder="Search"/>
+              <div className="search-wrapper">
+                  <div className="search__done">
+                      <label><input type="checkbox" /> Show done</label>
+                  </div>
+                  <div className="search__box">
+                    <input type="text" placeholder="Search"/>
+                  </div>
               </div>
+            </section>
+            <ProgressBar />
+            <main className="App-main">
+                <Categories list={this.state.list}
+                            action={this.onSelectCategory}
+                            active={this.state.activeCategory} />
+                <Tasks mode={this.state.mode} />
+            </main>
           </div>
-        </section>
-        <ProgressBar />
-        <main className="App-main">
-            <Categories list={this.state.list} />
-            <Tasks mode={this.state.mode} />
-        </main>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default App;

@@ -1,4 +1,4 @@
-.progress-bar {
+.Progressbar {
     border: 1px solid #cccccc;
     border-radius: 10px;
     height: 20px;
@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.progress-bar__loader {
+.Progressbar__loader {
     background-color: #ededed;
     height: 100%;
     width: 30%;
