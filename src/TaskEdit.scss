@@ -1,0 +1,29 @@
+.TaskEdit {
+    display: flex;
+    flex-direction: column;
+    padding-top: 49px;
+    width: 100%;
+
+    &__row {
+        margin-bottom: 10px;
+        width: 100%;
+
+        &--buttons {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+    }
+
+    &__save-btn {
+        margin-right: 20px;
+    }
+
+    &__task-title {
+        width: 300px;
+    }
+
+    &__task-desc {
+        height: 200px;
+        width: 100%;
+    }
+}

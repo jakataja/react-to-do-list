@@ -1,8 +1,6 @@
 .categories {
-    flex-basis: 40%;
-    padding-right: 20px;
-}
+  flex-basis: 40%;
+  padding-right: 20px; }
 
 .categories-add-form {
-    margin-bottom: 20px;
-}
+  margin-bottom: 20px; }

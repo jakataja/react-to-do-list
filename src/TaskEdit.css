@@ -1,29 +1,23 @@
 .TaskEdit {
-    display: flex;
-    flex-direction: column;
-    padding-top: 49px;
-    width: 100%;
-}
+  display: flex;
+  flex-direction: column;
+  padding-top: 49px;
+  width: 100%; }
 
 .TaskEdit__row {
-    margin-bottom: 10px;
-    width: 100%;
-}
+  margin-bottom: 10px;
+  width: 100%; }
 
 .TaskEdit__row--buttons {
-    margin-bottom: 20px;
-    text-align: right;
-}
+  margin-bottom: 20px;
+  text-align: right; }
 
 .TaskEdit__save-btn {
-    margin-right: 20px;
-}
+  margin-right: 20px; }
 
 .TaskEdit__task-title {
-    width: 300px;
-}
+  width: 300px; }
 
 .TaskEdit__task-desc {
-    height: 200px;
-    width: 100%;
-}
+  height: 200px;
+  width: 100%; }

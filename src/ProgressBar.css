@@ -1,15 +1,12 @@
 .Progressbar {
-    border: 1px solid #cccccc;
-    border-radius: 10px;
-    height: 20px;
-    margin: 20px auto;
-    max-width: 1200px;
-    overflow: hidden;
-    width: 100%;
-}
-
-.Progressbar__loader {
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  height: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
+  overflow: hidden;
+  width: 100%; }
+  .Progressbar__loader {
     background-color: #ededed;
     height: 100%;
-    width: 30%;
-}
+    width: 30%; }

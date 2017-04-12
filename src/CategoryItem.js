@@ -39,16 +39,18 @@ class CategoryItem extends Component {
         }
 
         return (
-            <li className={"category-list__item " + acitveClass} onClick={e => this.props.action(this.props.item) }>
-                <div className="category-list__item-wrapper">
-                    <span className="category-list__item__down-icon"><i className="icon-down-open"></i></span>
-                    <span className="category-list__item-name">{this.props.item.name}</span>
-                    <span className="category-list__item__edit-icon icon-edit"></span>
-                    <span className="category-list__item__delete-icon">
+            <li className={"CategoryItem " + acitveClass} onClick={e => this.props.action(this.props.item) }>
+                <div className="CategoryItem__wrapper">
+                    <span className="CategoryItem__down-icon">
+                        <i className="icon-down-open"></i>
+                    </span>
+                    <span className="CategoryItem__name">{this.props.item.name}</span>
+                    <span className="CategoryItem__edit-icon icon-edit"></span>
+                    <span className="CategoryItem__delete-icon">
                         <i className="icon-trash-empty"></i>
                     </span>
-                    <span className="category-list__item__add-icon icon-plus"></span>
-                    <span className="category-list__item__back-icon icon-reply"></span>
+                    <span className="CategoryItem__add-icon icon-plus"></span>
+                    <span className="CategoryItem__back-icon icon-reply"></span>
                 </div>
                 <Subcategories list={this.props.item.subcategories}
                                action={this.props.action}
