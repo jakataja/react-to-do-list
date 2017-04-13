@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './ProgressBar.css';
-// import ProgressBar from './ProgressBar';
-
-class ProgressBar extends Component {
 
 
+const ProgressBar = () => {
 
-    render() {
-        return (
-            <section className="Progressbar">
-                <div className="Progressbar__loader" ></div>
-            </section>
-        );
-    }
-}
+    return (
+        <section className="Progressbar">
+            <div className="Progressbar__loader" ></div>
+        </section>
+    );
+};
 
 export default ProgressBar;

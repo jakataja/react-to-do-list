@@ -2,35 +2,32 @@
  * Created by Katarzyna_Bak on 28.03.2017.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import './Categories.css';
 import CategoryItem from './CategoryItem';
 
+const Categories = (props) => {
 
-class Categories extends Component {
+    const categoryItems = props.list.map((category) =>
+        <CategoryItem key={category.num.toString()}
+                      item={category}
+                      onSelect={props.action}
+                      isActive={props.isActive} />
+    );
 
-    render() {
+    return (
+        <section className="categories">
+            <div className="categories-add-form">
+                <input type="text" placeholder="Enter category title" />
+                <button type="button">Add</button>
+            </div>
 
-        const categoryItems = this.props.list.map((category) =>
-            <CategoryItem key={category.num.toString()}
-                          item={category}
-                          action={this.props.action}
-                          active={this.props.active} />
-        );
+            <ul className="category-list">
+                {categoryItems}
+            </ul>
+        </section>
+    );
 
-        return (
-            <section className="categories">
-                <div className="categories-add-form">
-                    <input type="text" placeholder="Enter category title" />
-                    <button type="button">Add</button>
-                </div>
-
-                <ul className="category-list">
-                    {categoryItems}
-                </ul>
-            </section>
-        );
-    }
-};
+}
 
 export default Categories;

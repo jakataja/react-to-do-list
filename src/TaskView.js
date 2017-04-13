@@ -2,15 +2,13 @@
  * Created by Katarzyna_Bak on 28.03.2017.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import './Tasks.css';
 import './fontello.css';
 import TaskItem from './TaskItem';
 import TaskEdit from './TaskEdit';
 
-
-
-function TaskView(props) {
+const TaskView = (props) => {
 
     const taskArray = [1, 2, 3];
     const taskItems = taskArray.map((taskNum) =>
@@ -31,13 +29,4 @@ function TaskView(props) {
     return <TaskEdit />;
 }
 
-class Tasks extends Component {
-
-    render() {
-        return (
-            <TaskView mode={this.props.mode} />
-        );
-    }
-};
-
-export default Tasks;
+export default TaskView;

@@ -11,15 +11,12 @@
   cursor: pointer;
   display: flex;
   padding: 5px; }
-
-.CategoryItem__wrapper:hover {
-  background-color: #efefef; }
-
-.active > .CategoryItem__wrapper .icon-down-open {
-  display: inline; }
-
-.active > .CategoryItem__wrapper {
-  border-bottom: 1px solid #cdcdcd; }
+  .CategoryItem__wrapper:hover {
+    background-color: #efefef; }
+  .active > .CategoryItem__wrapper .icon-down-open {
+    display: inline; }
+  .active > .CategoryItem__wrapper {
+    border-bottom: 1px solid #cdcdcd; }
 
 .CategoryItem .CategoryItem .CategoryItem__wrapper {
   border-left: 1px solid #cdcdcd;

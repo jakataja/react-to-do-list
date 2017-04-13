@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import './fontello.css';
 import ProgressBar from './ProgressBar';
 import Categories from './Categories';
-import Tasks from './Tasks';
+import TaskView from './TaskView';
 
 class App extends Component {
 
@@ -36,10 +35,10 @@ class App extends Component {
             activeCategory: null,
         };
 
-        this.onSelectCategory = this.onSelectCategory.bind(this);
+        this.handleSelectCategory = this.handleSelectCategory.bind(this);
     }
 
-    onSelectCategory(category) {
+    handleSelectCategory(category) {
         this.setState({
             activeCategory: category
         });
@@ -65,9 +64,9 @@ class App extends Component {
             <ProgressBar />
             <main className="App-main">
                 <Categories list={this.state.list}
-                            action={this.onSelectCategory}
-                            active={this.state.activeCategory} />
-                <Tasks mode={this.state.mode} />
+                            action={this.handleSelectCategory}
+                            isActive={this.state.activeCategory} />
+                <TaskView mode={this.state.mode} />
             </main>
           </div>
         );
