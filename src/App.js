@@ -60,7 +60,7 @@ class App extends Component {
         };
         let newList = this.state.list;
         newList.unshift(newCategory);
-        this.setState({ list: newList});
+        this.setState({ list: newList, addCategoryInputText: ''});
     }
 
     handleInputChange() {
@@ -86,7 +86,9 @@ class App extends Component {
                   <div className="search__box">
                     <input type="text" placeholder="Search"
                            ref={input => {this.searchInput = input}}
-                           onChange={this.handleInputChange}/>
+                           value={this.state.searchInputText}
+                           onChange={this.handleInputChange}
+                    />
                   </div>
               </div>
             </section>
@@ -98,10 +100,13 @@ class App extends Component {
                             isActive={this.state.activeCategory}
                             actionChange={this.handleInputChange}
                             ref={component => this.categoriesComponent = component}
+                            inputValue={this.state.addCategoryInputText}
                 />
                 <TaskView mode={this.state.mode}
                           actionChange={this.handleInputChange}
-                          ref={component => this.tasksComponent = component}/>
+                          ref={component => this.tasksComponent = component}
+                          inputValue={this.state.taskInputText}
+                />
             </main>
           </div>
         );

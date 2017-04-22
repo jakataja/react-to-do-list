@@ -22,6 +22,7 @@ class Categories extends Component {
             <section className="categories">
                 <div className="categories-add-form">
                     <input type="text" placeholder="Enter category title"
+                           value={this.props.inputValue}
                            onChange={this.props.actionChange}
                            ref={input => { this.addInput = input }}/>
                     <button type="button" onClick={this.props.actionAdd}>Add</button>

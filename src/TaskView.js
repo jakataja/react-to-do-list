@@ -21,8 +21,9 @@ class TaskView extends Component {
                 <section className="tasks">
                     <div className="tasks-add-form">
                         <input type="text" placeholder=""
-                                ref={input => {this.taskInput = input}}
-                                onChange={this.props.actionChange}
+                               value={this.props.inputValue}
+                               ref={input => {this.taskInput = input}}
+                               onChange={this.props.actionChange}
                         />
                         <button type="button">Add</button>
                     </div>
