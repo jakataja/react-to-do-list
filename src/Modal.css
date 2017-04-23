@@ -1,0 +1,20 @@
+.Modal {
+  background: #fff;
+  border: 1px #aaa solid;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: rgba(0, 0, 0, 0.75) 0 0 10px 0;
+  width: 400px; }
+
+.Modal-title {
+  padding-bottom: 10px; }
+
+.Modal-content {
+  padding-bottom: 10px; }
+
+.Modal-input {
+  width: 100%; }

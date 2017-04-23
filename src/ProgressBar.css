@@ -6,7 +6,8 @@
   max-width: 1200px;
   overflow: hidden;
   width: 100%; }
-  .Progressbar__loader {
-    background-color: #ededed;
-    height: 100%;
-    width: 30%; }
+
+.Progressbar__loader {
+  background-color: #ededed;
+  height: 100%;
+  width: 0%; }
