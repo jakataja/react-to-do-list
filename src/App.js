@@ -16,11 +16,13 @@ class App extends Component {
                 {id: 1, name: "Category 1", subcategories: [
                     {id: 5, name: "Subcategory 1", subcategories: [], tasks: []},
                     {id: 6, name: "Subcategory 2", subcategories: [], tasks: []}
-                ], tasks: [{name: "To-do item 1"}], isDone: false },
+                ], tasks: [
+                    {id: 12, name: "To-do item 1", isDone: false}
+                ]},
                 {id: 2, name: "Category 2", subcategories: [
                     {id: 7, name: "Subcategory 2", subcategories: [], tasks: []}
                 ], tasks: [
-                    {name: "To-do item 1", isDone: true}
+                    {id: 11, name: "To-do item 1", isDone: true}
                 ]},
                 {id: 3, name: "Category 3", subcategories: [], tasks: []},
                 {id: 4, name: "Category 4", subcategories: [
@@ -42,7 +44,7 @@ class App extends Component {
             modalCategoryActive: false,
             modalCategoryState: null,
             categoryToUpdate: null,
-            nextCatId: 11,
+            nextCatId: 13,
             nextTaskId: 4,
         };
 
@@ -183,6 +185,7 @@ class App extends Component {
                           actionChange={this.handleInputChange}
                           ref={component => this.tasksComponent = component}
                           inputValue={this.state.taskInputText}
+                          category={this.state.activeCategory}
                 />
             </main>
             {this.state.modalCategoryActive &&

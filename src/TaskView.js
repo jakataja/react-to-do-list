@@ -11,9 +11,11 @@ import TaskEdit from './TaskEdit';
 class TaskView extends Component {
 
     render () {
-        const taskArray = [1, 2, 3];
-        const taskItems = taskArray.map((taskNum) =>
-            <TaskItem key={taskNum.toString()} num={taskNum}/>
+
+
+        const taskArray = (this.props.category !== null) ? this.props.category.tasks : [];
+        const taskItems = taskArray.map((task) =>
+            <TaskItem key={task.id.toString()} num={task.id}/>
         );
 
         if (this.props.mode === 0) {
