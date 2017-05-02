@@ -31,7 +31,8 @@ const Subcategories = (props) => {
 const CategoryItem = (props) => {
 
     let acitveClass = '';
-    if (props.item === props.isActive && props.item.subcategories.length > 0) {
+    // if (props.item === props.isActive && props.item.subcategories.length > 0) {
+    if (props.item === props.isActive) {
         acitveClass = 'active';
     }
 
@@ -54,12 +55,12 @@ const CategoryItem = (props) => {
                 <span className="CategoryItem__add-icon icon-plus" onClick={() => props.actionAddSubcategory(props.item) }></span>
                 <span className="CategoryItem__back-icon icon-reply"></span>
             </div>
-            <Subcategories list={props.item.subcategories}
-                           action={props.onSelect}
-                           isActive={props.isActive}
-                           actionAddSubcategory={props.actionAddSubcategory}
-                           actionUpdateCategory={props.actionUpdateCategory}
-            />
+            {/*<Subcategories list={props.item.subcategories}*/}
+                           {/*action={props.onSelect}*/}
+                           {/*isActive={props.isActive}*/}
+                           {/*actionAddSubcategory={props.actionAddSubcategory}*/}
+                           {/*actionUpdateCategory={props.actionUpdateCategory}*/}
+            {/*/>*/}
         </li>
     );
 };

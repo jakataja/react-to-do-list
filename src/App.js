@@ -35,6 +35,25 @@ class App extends Component {
                     {id: 3, name: "To-do item 3", isDone: false}
                 ]}
             ],
+            categories: [
+                {id: 1, name: "Category 1", parentId: null },
+                {id: 2, name: "Category 2", parentId: null },
+                {id: 3, name: "Category 3", parentId: null },
+                {id: 4, name: "Category 4", parentId: null },
+                {id: 5, name: "Category 5", parentId: 1 },
+                {id: 6, name: "Category 6", parentId: 1 },
+                {id: 7, name: "Category 7", parentId: 2 },
+                {id: 8, name: "Category 8", parentId: 4 },
+                {id: 9, name: "Category 9", parentId: 4 },
+                {id: 10, name: "Category 10", parentId: 4 },
+            ],
+            tasks: [
+                {id: 1, name: "To-do item 1", categoryId: 1, isDone: false},
+                {id: 2, name: "To-do item 2", categoryId: 2, isDone: false},
+                {id: 3, name: "To-do item 3", categoryId: 4, isDone: false},
+                {id: 4, name: "To-do item 4", categoryId: 4, isDone: true},
+                {id: 5, name: "To-do item 5", categoryId: 4, isDone: false}
+            ],
             mode: 0, // 0 - display, 1 - edit
             activeCategory: null,
             addCategoryInputText: '',
@@ -50,6 +69,7 @@ class App extends Component {
 
         this.handleSelectCategory = this.handleSelectCategory.bind(this);
         this.handleAddCategory = this.handleAddCategory.bind(this);
+        this.handleAddTask = this.handleAddTask.bind(this);
         this.handleAddSubcategory = this.handleAddSubcategory.bind(this);
         this.handleUpdateCategory = this.handleUpdateCategory.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -72,22 +92,63 @@ class App extends Component {
         const newCategory = {
             id: this.state.nextCatId,
             name: this.state.addCategoryInputText,
-            subcategories: [],
-            tasks: []
+            // subcategories: [],
+            // tasks: []
+            parentId: null
         };
-        let newList = this.state.list;
+
+        // let newList = this.state.list;
+        // newList.unshift(newCategory);
+
+        let newList = this.state.categories;
         newList.unshift(newCategory);
+
         this.setState({
-            list: newList,
+            // list: newList,
+            categories: newList,
             addCategoryInputText: '',
             nextCatId: this.state.nextCatId + 1
         });
     }
 
+    handleAddTask(e) {
+        if(this.state.taskInputText === '') return;
+
+        const newTask = {
+            id: this.state.nextTaskId,
+            name: this.state.taskInputText,
+            // subcategories: [],
+            // tasks: []
+            categoryId: this.state.activeCategory.id,
+            isDone: false
+        };
+
+        let newList = this.state.tasks;
+        newList.unshift(newTask);
+
+        this.setState({
+            // list: newList,
+            tasks: newList,
+            taskInputText: '',
+            nextTaskId: this.state.nextTaskId + 1
+        });
+    }
+
+    getPath(list, node) {
+        console.log('id', node.id);
+
+        let path = [];
+
+        return path;
+    }
+
     handleAddSubcategory(parent) {
+
+        this.getPath(this.state.list, parent);
 
         this.setState({
             modalCategoryActive: true,
+            modalCategoryState: 'add',
             categoryToUpdate: parent
         });
     }
@@ -113,16 +174,43 @@ class App extends Component {
 
     handleSubmitModalCategory() {
 
-        const list1 = fromJS(this.state.list);
-        const list2 = list1.updateIn([0, 'name'], name => this.state.modalCategoryInputText).toJS();
+        if(this.state.modalCategoryState === 'update') {
+            // const list1 = fromJS(this.state.list);
+            const list1 = fromJS(this.state.categories);
+            const categoryIndex = this.state.categories.indexOf(this.state.categoryToUpdate);
+            const list2 = list1.updateIn([categoryIndex, 'name'], name => this.state.modalCategoryInputText).toJS();
 
-        this.setState({
-            modalCategoryActive: false,
-            modalCategoryState: null,
-            modalCategoryInputText: '',
-            categoryToUpdate: null,
-            list: list2
-        });
+            this.setState({
+                modalCategoryActive: false,
+                modalCategoryState: null,
+                modalCategoryInputText: '',
+                categoryToUpdate: null,
+                // list: list2
+                categories: list2
+            });
+
+        } else if(this.state.modalCategoryState === 'add') {
+
+            if(this.state.modalCategoryInputText === '') return;
+
+            const newCategory = {
+                id: this.state.nextCatId,
+                name: this.state.modalCategoryInputText,
+                parentId: this.state.categoryToUpdate.id
+            };
+
+            let list2 = this.state.categories;
+            list2.unshift(newCategory);
+
+            this.setState({
+                modalCategoryActive: false,
+                modalCategoryState: null,
+                modalCategoryInputText: '',
+                categoryToUpdate: null,
+                nextCatId: this.state.nextCatId + 1
+            });
+
+        }
     }
 
     handleInputChange() {
@@ -171,7 +259,8 @@ class App extends Component {
             </section>
             <ProgressBar list={this.state.list} />
             <main className="App-main">
-                <Categories list={this.list}
+                {/*<Categories list={this.list}*/}
+                <Categories list={this.state.categories}
                             actionSelect={this.handleSelectCategory}
                             actionAdd={this.handleAddCategory}
                             actionAddSubcategory={this.handleAddSubcategory}
@@ -183,9 +272,11 @@ class App extends Component {
                 />
                 <TaskView mode={this.state.mode}
                           actionChange={this.handleInputChange}
+                          actionAdd={this.handleAddTask}
                           ref={component => this.tasksComponent = component}
                           inputValue={this.state.taskInputText}
                           category={this.state.activeCategory}
+                          tasks={this.state.tasks}
                 />
             </main>
             {this.state.modalCategoryActive &&

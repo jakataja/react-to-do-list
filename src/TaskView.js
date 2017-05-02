@@ -13,9 +13,15 @@ class TaskView extends Component {
     render () {
 
 
-        const taskArray = (this.props.category !== null) ? this.props.category.tasks : [];
+        const taskArray = (this.props.category !== null)
+            ? this.props.tasks.filter((task) => {
+                return task.categoryId === this.props.category.id;
+            })
+            : [];
+
+
         const taskItems = taskArray.map((task) =>
-            <TaskItem key={task.id.toString()} num={task.id}/>
+             <TaskItem key={task.id.toString()} num={task.id}/>
         );
 
         if (this.props.mode === 0) {
@@ -27,7 +33,7 @@ class TaskView extends Component {
                                ref={input => {this.taskInput = input}}
                                onChange={this.props.actionChange}
                         />
-                        <button type="button">Add</button>
+                        <button type="button" onClick={this.props.actionAdd}>Add</button>
                     </div>
                     <ul className="tasks-list">{taskItems}</ul>
                 </section>
