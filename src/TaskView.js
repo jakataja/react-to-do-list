@@ -15,13 +15,21 @@ class TaskView extends Component {
 
         const taskArray = (this.props.category !== null)
             ? this.props.tasks.filter((task) => {
+                if(this.props.done) {
+                    return task.categoryId === this.props.category.id
+                        && task.isDone === true;
+                }
+
                 return task.categoryId === this.props.category.id;
             })
             : [];
 
 
         const taskItems = taskArray.map((task) =>
-             <TaskItem key={task.id.toString()} num={task.id}/>
+             <TaskItem key={task.id.toString()}
+                       item={task}
+                       setDone={this.props.setDone}
+             />
         );
 
         if (this.props.mode === 0) {

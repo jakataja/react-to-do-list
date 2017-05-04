@@ -65,6 +65,7 @@ class App extends Component {
             categoryToUpdate: null,
             nextCatId: 13,
             nextTaskId: 4,
+            showDone: false,
         };
 
         this.handleSelectCategory = this.handleSelectCategory.bind(this);
@@ -76,6 +77,8 @@ class App extends Component {
         this.handleCancelModalCategory = this.handleCancelModalCategory.bind(this);
         this.handleSubmitModalCategory = this.handleSubmitModalCategory.bind(this);
         this.handleCountCategories = this.handleCountCategories.bind(this);
+        this.handleShowDone =  this.handleShowDone.bind(this);
+        this.handleSetDone =  this.handleSetDone.bind(this);
 
         this.list = null;
     }
@@ -234,6 +237,19 @@ class App extends Component {
         });
     }
 
+    handleShowDone() {
+        this.setState({ showDone: this.doneCheckbox.checked });
+    }
+
+    handleSetDone(task) {
+
+        let tasks = fromJS(this.state.tasks);
+        const taskIndex = this.state.tasks.indexOf(task);
+        const newTasks = tasks.updateIn([taskIndex, 'isDone'], isDone => !task.isDone).toJS();
+
+        this.setState({tasks: newTasks});
+    }
+
     render() {
 
         this.list = this.state.list;
@@ -246,7 +262,10 @@ class App extends Component {
               </div>
               <div className="search-wrapper">
                   <div className="search__done">
-                      <label><input type="checkbox" /> Show done</label>
+                      <label><input type="checkbox"
+                                    ref={ input => {this.doneCheckbox = input}}
+                                    onChange={this.handleShowDone}
+                      /> Show done</label>
                   </div>
                   <div className="search__box">
                     <input type="text" placeholder="Search"
@@ -277,6 +296,8 @@ class App extends Component {
                           inputValue={this.state.taskInputText}
                           category={this.state.activeCategory}
                           tasks={this.state.tasks}
+                          done={this.state.showDone}
+                          setDone={this.handleSetDone}
                 />
             </main>
             {this.state.modalCategoryActive &&
