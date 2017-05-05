@@ -10,13 +10,21 @@ class Categories extends Component {
 
     render() {
 
-        const categoryItems = this.props.list.map((category) =>
+        const level = this.props.list.filter((category) => {
+                return category.parentId === null;
+            }
+        );
+
+        // const categoryItems = this.props.list.map((category) =>
+        const categoryItems = level.map((category) =>
+
             <CategoryItem key={category.id.toString()}
                           item={category}
                           onSelect={this.props.actionSelect}
                           isActive={this.props.isActive}
                           actionAddSubcategory={this.props.actionAddSubcategory}
                           actionUpdateCategory={this.props.actionUpdateCategory}
+                          categories={this.props.list}
             />
         );
 

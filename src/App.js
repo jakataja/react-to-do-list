@@ -137,17 +137,7 @@ class App extends Component {
         });
     }
 
-    getPath(list, node) {
-        console.log('id', node.id);
-
-        let path = [];
-
-        return path;
-    }
-
     handleAddSubcategory(parent) {
-
-        this.getPath(this.state.list, parent);
 
         this.setState({
             modalCategoryActive: true,
