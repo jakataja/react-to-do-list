@@ -276,7 +276,10 @@ class App extends Component {
                   </div>
               </div>
             </section>
-            <ProgressBar list={this.state.list} />
+            <ProgressBar list={this.state.list}
+                         tasks={this.state.tasks}
+                         categories={this.state.categories}
+            />
             <main className="App-main">
                 {/*<Categories list={this.list}*/}
                 <Categories list={this.state.categories}

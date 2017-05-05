@@ -23,30 +23,31 @@ class ProgressBar extends Component {
         return element.isDone;
     }
 
-    countCompleted(list) {
-        let completedCounter = 0;
+    countDoneTasks(categories, tasks) {
+        let completedCategories = 0;
 
-        list.forEach((item, index, array) => {
-            let completedSubcounter = 0;
+        categories.forEach((category) => {
 
-            if(item.tasks.length === 0) {
-                ++completedCounter;
+            let cTasks = tasks.filter((task) => {
+                return task.categoryId === category.id;
+            });
+
+            if(cTasks.length === 0) {
+                ++completedCategories;
             } else {
-                if(item.tasks.every(this.isDone)) {
-                    ++completedCounter;
+                if(cTasks.every(this.isDone)) {
+                    ++completedCategories;
                 }
             }
-            completedSubcounter = this.countCompleted(item.subcategories);
-            completedCounter += completedSubcounter;
         });
 
-        return completedCounter;
+        return completedCategories;
     }
 
     render() {
 
-        const length = this.countCategories(this.props.list);
-        const progress = this.countCompleted(this.props.list) / length * 100;
+        const length = this.props.categories.length;//this.countCategories(this.props.list);
+        const progress = this.countDoneTasks(this.props.categories, this.props.tasks) / length * 100;
 
         const barWidth = { width: progress + '%'};
 
@@ -56,6 +57,6 @@ class ProgressBar extends Component {
             </section>
         );
     }
-};
+}
 
 export default ProgressBar;
