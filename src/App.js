@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { fromJS } from 'immutable';
 import './App.css';
 import './fontello.css';
@@ -6,8 +7,10 @@ import ProgressBar from './ProgressBar';
 import Categories from './Categories';
 import TaskView from './TaskView';
 import ModalCategory from './ModalCategory';
+import MainView from './MainView';
+import EditView from './EditView';
 
-class App extends Component {
+class Main extends Component {
 
     constructor(props) {
         super(props);
@@ -270,29 +273,68 @@ class App extends Component {
                          tasks={this.state.tasks}
                          categories={this.state.categories}
             />
+
             <main className="App-main">
-                {/*<Categories list={this.list}*/}
-                <Categories list={this.state.categories}
-                            actionSelect={this.handleSelectCategory}
-                            actionAdd={this.handleAddCategory}
-                            actionAddSubcategory={this.handleAddSubcategory}
-                            actionUpdateCategory={this.handleUpdateCategory}
-                            isActive={this.state.activeCategory}
-                            actionChange={this.handleInputChange}
-                            ref={component => this.categoriesComponent = component}
-                            inputValue={this.state.addCategoryInputText}
-                />
-                <TaskView mode={this.state.mode}
-                          actionChange={this.handleInputChange}
-                          actionAdd={this.handleAddTask}
-                          ref={component => this.tasksComponent = component}
-                          inputValue={this.state.taskInputText}
-                          category={this.state.activeCategory}
-                          tasks={this.state.tasks}
-                          done={this.state.showDone}
-                          setDone={this.handleSetDone}
-                />
+
+                <Switch>
+                <Route exact path="/" component={(routerprops) =>
+                    <div className="view-container">
+                    <Categories list={this.state.categories}
+                                actionSelect={this.handleSelectCategory}
+                                actionAdd={this.handleAddCategory}
+                                actionAddSubcategory={this.handleAddSubcategory}
+                                actionUpdateCategory={this.handleUpdateCategory}
+                                isActive={this.state.activeCategory}
+                                actionChange={this.handleInputChange}
+                                ref={component => this.categoriesComponent = component}
+                                inputValue={this.state.addCategoryInputText}
+                                router={routerprops}
+                    />
+                    </div>
+                } />
+
+                {/*<Route path="/category/:id" component={(router) => (*/}
+                    {/*<TaskView mode={this.state.mode}*/}
+                             {/*actionChange={this.handleInputChange}*/}
+                             {/*actionAdd={this.handleAddTask}*/}
+                             {/*ref={component => this.tasksComponent = component}*/}
+                             {/*inputValue={this.state.taskInputText}*/}
+                             {/*category={this.state.activeCategory}*/}
+                             {/*tasks={this.state.tasks}*/}
+                             {/*done={this.state.showDone}*/}
+                             {/*setDone={this.handleSetDone}*/}
+                                {/*router={router}*/}
+                    {/*/>*/}
+                    {/*)}*/}
+                {/*/>*/}
+
+                <Route path="/category/:id" component={(routerprops) => {
+                    return <MainView state={this.state}
+                              categoryAction={{
+                                  actionSelect: this.handleSelectCategory,
+                                  actionAdd: this.handleAddCategory,
+                                  actionAddSubcategory: this.handleAddSubcategory,
+                                  actionUpdateCategory: this.handleUpdateCategory,
+                                  actionChange: this.handleInputChange
+                              }}
+                              taskAction={{
+                                  actionChange: this.handleInputChange,
+                                  actionAdd: this.handleAddTask,
+                                  setDone: this.handleSetDone
+                              }}
+                             router={routerprops}
+                    />
+                }
+                } />
+
+                <Route path="/task/:id" component={EditView} />
+
+
+                </Switch>
+
             </main>
+
+
             {this.state.modalCategoryActive &&
               <ModalCategory actionCancel={this.handleCancelModalCategory}
                              actionChange={this.handleInputChange}
@@ -302,6 +344,25 @@ class App extends Component {
             }
           </div>
         );
+    }
+}
+
+class App extends Component {
+    render() {
+        return (
+            //<Router>
+                //<Route component={Main} >
+                    //<Switch>
+                    //<Route path="/" component={Categories} />
+                    //<Route path="/category/:id" component={Categories} />
+                    //<Route path="/task/:id" component={TaskView} />
+                    //</Switch>
+                //</Route>
+            //</Router>
+            <Router>
+                <Main/>
+            </Router>
+        )
     }
 }
 

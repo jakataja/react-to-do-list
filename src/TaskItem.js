@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import './TaskItem.css';
 
 class TaskItem extends Component {
@@ -11,9 +12,14 @@ class TaskItem extends Component {
     // }
 
     render() {
+
+        const style = this.props.item.isDone
+            ? { 'textDecoration': 'line-through'}
+            : {};
+
         return (
             <li className="task-list__item">
-                <label className="task-list__item-name">
+                <label className="task-list__item-name" style={style}>
                     <input type="checkbox"
                            className="task-list__item-checkbox"
                            checked={this.props.item.isDone}
@@ -22,7 +28,7 @@ class TaskItem extends Component {
                            }}
                     /> To-do Item: {this.props.item.name}
                 </label>
-                <span className="icon-edit"></span>
+                <Link to={"/task/" + this.props.item.id}  ><span className="icon-edit"></span></Link>
             </li>
         );
     }

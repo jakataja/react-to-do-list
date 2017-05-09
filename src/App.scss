@@ -30,8 +30,8 @@
 
 
 .App-main {
-  display: flex;
-  justify-content: flex-start;
+  //display: flex;
+  //justify-content: flex-start;
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
@@ -48,4 +48,10 @@
 
 .search__box {
 
+}
+
+.view-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
