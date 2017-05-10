@@ -6,7 +6,6 @@ import React, {Component} from 'react';
 import './Tasks.css';
 import './fontello.css';
 import TaskItem from './TaskItem';
-import TaskEdit from './TaskEdit';
 
 class TaskView extends Component {
 

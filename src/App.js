@@ -5,7 +5,6 @@ import './App.css';
 import './fontello.css';
 import ProgressBar from './ProgressBar';
 import Categories from './Categories';
-import TaskView from './TaskView';
 import ModalCategory from './ModalCategory';
 import MainView from './MainView';
 import EditView from './EditView';
@@ -293,21 +292,6 @@ class Main extends Component {
                     </div>
                 } />
 
-                {/*<Route path="/category/:id" component={(router) => (*/}
-                    {/*<TaskView mode={this.state.mode}*/}
-                             {/*actionChange={this.handleInputChange}*/}
-                             {/*actionAdd={this.handleAddTask}*/}
-                             {/*ref={component => this.tasksComponent = component}*/}
-                             {/*inputValue={this.state.taskInputText}*/}
-                             {/*category={this.state.activeCategory}*/}
-                             {/*tasks={this.state.tasks}*/}
-                             {/*done={this.state.showDone}*/}
-                             {/*setDone={this.handleSetDone}*/}
-                                {/*router={router}*/}
-                    {/*/>*/}
-                    {/*)}*/}
-                {/*/>*/}
-
                 <Route path="/category/:id" component={(routerprops) => {
                     return <MainView state={this.state}
                               categoryAction={{
@@ -327,7 +311,24 @@ class Main extends Component {
                 }
                 } />
 
-                <Route path="/task/:id" component={EditView} />
+                <Route path="/task/:id" component={(routerprops) => {
+                    return <EditView state={this.state}
+                                     categoryAction={{
+                                         actionSelect: this.handleSelectCategory,
+                                         actionAdd: this.handleAddCategory,
+                                         actionAddSubcategory: this.handleAddSubcategory,
+                                         actionUpdateCategory: this.handleUpdateCategory,
+                                         actionChange: this.handleInputChange
+                                     }}
+                                     taskAction={{
+                                         actionChange: this.handleInputChange,
+                                         actionAdd: this.handleAddTask,
+                                         setDone: this.handleSetDone
+                                     }}
+                                     router={routerprops}
+                    />
+                }
+                } />
 
 
                 </Switch>
@@ -359,7 +360,7 @@ class App extends Component {
                     //</Switch>
                 //</Route>
             //</Router>
-            <Router>
+            <Router basename="/">
                 <Main/>
             </Router>
         )

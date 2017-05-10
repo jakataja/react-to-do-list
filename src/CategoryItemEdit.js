@@ -19,7 +19,7 @@ const Subcategories = (props) => {
                       actionAddSubcategory={props.actionAddSubcategory}
                       actionUpdateCategory={props.actionUpdateCategory}
                       categories={props.categories}
-
+                      router={props.router}
         />
     );
 
@@ -33,7 +33,7 @@ const Subcategories = (props) => {
 const CategoryItemEdit = (props) => {
 
     let acitveClass = '';
-    // if (props.item === props.isActive && props.item.subcategories.length > 0) {
+
     if (props.item === props.isActive) {
         acitveClass = 'active';
     }
@@ -52,13 +52,6 @@ const CategoryItemEdit = (props) => {
                       onClick={() => props.onSelect(props.item) }>
                     <Link to={"/category/" + props.item.id}>{props.item.name}</Link>
                 </span>
-                {/*<span className="CategoryItem__edit-icon icon-edit"*/}
-                      {/*onClick={() => props.actionUpdateCategory(props.item) }*/}
-                {/*></span>*/}
-                {/*<span className="CategoryItem__delete-icon">*/}
-                    {/*<i className="icon-trash-empty"></i>*/}
-                {/*</span>*/}
-                <span className="CategoryItem__add-icon icon-plus" onClick={() => props.actionAddSubcategory(props.item) }></span>
                 <span className="CategoryItem__back-icon icon-reply"></span>
             </div>
             <Subcategories list={sublevel}

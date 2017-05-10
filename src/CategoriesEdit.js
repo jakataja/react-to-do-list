@@ -21,6 +21,8 @@ class CategoriesEdit extends Component {
                           actionAddSubcategory={this.props.actionAddSubcategory}
                           actionUpdateCategory={this.props.actionUpdateCategory}
                           categories={this.props.list}
+                              router={this.props.router}
+
             />
         );
 
