@@ -20,15 +20,16 @@ const EditView = (props) => {
 
             <TaskEdit
                 state={props.state}
-                actionChange={props.taskAction.handleInputChange}
-                actionAdd={props.taskAction.handleAddTask}
+                // actionChange={props.taskAction.handleInputChange}
+                // actionAdd={props.taskAction.handleAddTask}
                 // ref={component => tasksComponent = component}
-                inputValue={props.state.taskInputText}
+                // inputValue={props.state.taskInputText}
                 category={props.state.activeCategory}
                 tasks={props.state.tasks}
                 done={props.state.showDone}
-                setDone={props.taskAction.handleSetDone}
+                // setDone={props.taskAction.handleSetDone}
                 router={props.router}
+                taskAction={props.taskAction}
             />
         </div>
     );

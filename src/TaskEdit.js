@@ -19,13 +19,16 @@ class TaskEdit extends Component {
         const task = getItemById(taskId, this.props.state.tasks);
 
         this.state = {
+            taskId: taskId,
             taskName: task.name,
-            taskIsDone: task.isDone
+            taskIsDone: task.isDone,
+            taskCategory: task.categoryId
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleTaskDone = this.handleTaskDone.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     handleInputChange (e) {
@@ -37,7 +40,18 @@ class TaskEdit extends Component {
     }
 
     handleCancel () {
-        this.context.history.goBack();
+        this.props.router.history.push(`/category/${this.state.taskCategory}`);
+    }
+
+    handleSave () {
+        const task = {
+            id: this.state.taskId,
+            name: this.state.taskName,
+            categoryId: this.state.taskCategory,
+            isDone: this.state.taskIsDone,
+        };
+        this.props.taskAction.saveTask(task);
+        this.props.router.history.push(`/category/${this.state.taskCategory}`);
     }
 
     render () {
@@ -45,9 +59,10 @@ class TaskEdit extends Component {
         return (
             <section className="TaskEdit">
                 <div className="TaskEdit__row TaskEdit__row--buttons">
-                    <button type="button" className="TaskEdit__save-btn">Save changes</button>
+                    <button type="button" className="TaskEdit__save-btn"
+                    onClick={this.handleSave}>Save changes</button>
                     <button type="button" className="TaskEdit__cancel-btn"
-                            onClick={this.handle}>Cancel</button>
+                            onClick={this.handleCancel}>Cancel</button>
                 </div>
                 <div className="TaskEdit__row">
                     <input type="text" placeholder="Task name" className="TaskEdit__task-title"

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { fromJS } from 'immutable';
+import { BrowserRouter as Router, browserHistory, Route, Switch } from 'react-router-dom';
+import { fromJS, List } from 'immutable';
 import './App.css';
 import './fontello.css';
 import ProgressBar from './ProgressBar';
@@ -81,8 +81,7 @@ class Main extends Component {
         this.handleCountCategories = this.handleCountCategories.bind(this);
         this.handleShowDone =  this.handleShowDone.bind(this);
         this.handleSetDone =  this.handleSetDone.bind(this);
-
-        this.list = null;
+        this.handleSaveTask =  this.handleSaveTask.bind(this);
     }
 
     handleSelectCategory(category) {
@@ -242,6 +241,23 @@ class Main extends Component {
         this.setState({tasks: newTasks});
     }
 
+    handleSaveTask(task) {
+
+        const tasks = List(this.state.tasks);
+        let taskIndex;
+        this.state.tasks.filter((item, index) => {
+            if(item.id === task.id) {
+                taskIndex = index;
+                return true;
+            }
+            return false;
+        });
+        const newTasks = tasks.update(taskIndex, item => task).toJS();
+
+        this.setState({tasks: newTasks});
+
+    }
+
     render() {
 
         this.list = this.state.list;
@@ -319,11 +335,12 @@ class Main extends Component {
                                          actionAddSubcategory: this.handleAddSubcategory,
                                          actionUpdateCategory: this.handleUpdateCategory,
                                          actionChange: this.handleInputChange
-                                     }}
+                                      }}
                                      taskAction={{
                                          actionChange: this.handleInputChange,
                                          actionAdd: this.handleAddTask,
-                                         setDone: this.handleSetDone
+                                         setDone: this.handleSetDone,
+                                         saveTask: this.handleSaveTask
                                      }}
                                      router={routerprops}
                     />
@@ -349,6 +366,9 @@ class Main extends Component {
 }
 
 class App extends Component {
+
+
+
     render() {
         return (
             //<Router>
@@ -360,7 +380,7 @@ class App extends Component {
                     //</Switch>
                 //</Route>
             //</Router>
-            <Router basename="/">
+            <Router history={browserHistory} >
                 <Main/>
             </Router>
         )
