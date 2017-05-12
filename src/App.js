@@ -66,7 +66,7 @@ class Main extends Component {
             modalCategoryState: null,
             categoryToUpdate: null,
             nextCatId: 13,
-            nextTaskId: 4,
+            nextTaskId: 6,
             showDone: false,
         };
 
@@ -90,40 +90,32 @@ class Main extends Component {
         });
     }
 
-    handleAddCategory(e) {
-        if(this.state.addCategoryInputText === '') return;
+    handleAddCategory(category) {
+        if(category.name === '') return;
 
         const newCategory = {
             id: this.state.nextCatId,
-            name: this.state.addCategoryInputText,
-            // subcategories: [],
-            // tasks: []
+            name: category.name,
             parentId: null
         };
-
-        // let newList = this.state.list;
-        // newList.unshift(newCategory);
 
         let newList = this.state.categories;
         newList.unshift(newCategory);
 
         this.setState({
-            // list: newList,
             categories: newList,
-            addCategoryInputText: '',
             nextCatId: this.state.nextCatId + 1
         });
     }
 
-    handleAddTask(e) {
-        if(this.state.taskInputText === '') return;
+    handleAddTask(task) {
+
+        if(task.name === '') return;
 
         const newTask = {
             id: this.state.nextTaskId,
-            name: this.state.taskInputText,
-            // subcategories: [],
-            // tasks: []
-            categoryId: this.state.activeCategory.id,
+            name: task.name,
+            categoryId: task.categoryId,
             isDone: false
         };
 
@@ -131,9 +123,7 @@ class Main extends Component {
         newList.unshift(newTask);
 
         this.setState({
-            // list: newList,
             tasks: newList,
-            taskInputText: '',
             nextTaskId: this.state.nextTaskId + 1
         });
     }
@@ -166,30 +156,27 @@ class Main extends Component {
         });
     }
 
-    handleSubmitModalCategory() {
+    handleSubmitModalCategory(categoryName) {
 
         if(this.state.modalCategoryState === 'update') {
-            // const list1 = fromJS(this.state.list);
             const list1 = fromJS(this.state.categories);
             const categoryIndex = this.state.categories.indexOf(this.state.categoryToUpdate);
-            const list2 = list1.updateIn([categoryIndex, 'name'], name => this.state.modalCategoryInputText).toJS();
+            const list2 = list1.updateIn([categoryIndex, 'name'], name => categoryName).toJS();
 
             this.setState({
                 modalCategoryActive: false,
                 modalCategoryState: null,
-                modalCategoryInputText: '',
                 categoryToUpdate: null,
-                // list: list2
                 categories: list2
             });
 
         } else if(this.state.modalCategoryState === 'add') {
 
-            if(this.state.modalCategoryInputText === '') return;
+            if(categoryName === '') return;
 
             const newCategory = {
                 id: this.state.nextCatId,
-                name: this.state.modalCategoryInputText,
+                name: categoryName,
                 parentId: this.state.categoryToUpdate.id
             };
 
@@ -199,7 +186,6 @@ class Main extends Component {
             this.setState({
                 modalCategoryActive: false,
                 modalCategoryState: null,
-                modalCategoryInputText: '',
                 categoryToUpdate: null,
                 nextCatId: this.state.nextCatId + 1
             });
@@ -308,7 +294,7 @@ class Main extends Component {
                     </div>
                 } />
 
-                <Route path="/category/:id" component={(routerprops) => {
+                <Route path="/category/:id/:done?" component={(routerprops) => {
                     return <MainView state={this.state}
                               categoryAction={{
                                   actionSelect: this.handleSelectCategory,
@@ -355,7 +341,7 @@ class Main extends Component {
 
             {this.state.modalCategoryActive &&
               <ModalCategory actionCancel={this.handleCancelModalCategory}
-                             actionChange={this.handleInputChange}
+                             // actionChange={this.handleInputChange}
                              actionSubmit={this.handleSubmitModalCategory}
                              text={this.state.modalCategoryInputText}
                              ref={component => this.modalComponent = component} />
@@ -381,7 +367,7 @@ class App extends Component {
                 //</Route>
             //</Router>
             <Router history={browserHistory} >
-                <Main/>
+                <Main />
             </Router>
         )
     }

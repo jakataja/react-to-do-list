@@ -9,6 +9,30 @@ import TaskItem from './TaskItem';
 
 class TaskView extends Component {
 
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            newTaskInputText: ''
+        };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleAddTask = this.handleAddTask.bind(this);
+
+    }
+
+    handleInputChange (e) {
+        this.setState({newTaskInputText: e.target.value});
+    }
+
+    handleAddTask () {
+        const task = {
+            name: this.state.newTaskInputText,
+            categoryId: parseInt(this.props.router.match.params.id, 10)
+        };
+        this.props.taskAction.actionAdd(task);
+    }
+
     render () {
 
         const {router} = this.props;
@@ -25,7 +49,7 @@ class TaskView extends Component {
         const taskItems = taskArray.map((task) =>
              <TaskItem key={task.id.toString()}
                        item={task}
-                       setDone={this.props.setDone}
+                       setDone={this.props.taskAction.setDone}
              />
         );
 
@@ -33,11 +57,10 @@ class TaskView extends Component {
             <section className="tasks">
                 <div className="tasks-add-form">
                     <input type="text" placeholder=""
-                           value={this.props.inputValue}
-                           ref={input => {this.taskInput = input}}
-                           onChange={this.props.actionChange}
+                           value={this.state.newTaskInputText}
+                           onChange={this.handleInputChange}
                     />
-                    <button type="button" onClick={this.props.actionAdd}>Add</button>
+                    <button type="button" onClick={this.handleAddTask}>Add</button>
                 </div>
                 <ul className="tasks-list">{taskItems}</ul>
             </section>

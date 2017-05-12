@@ -3,6 +3,26 @@ import './Modal.css';
 
 class ModalCategory extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modalInput: this.props.text
+        };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange (e) {
+        this.setState({ modalInput: e.target.value });
+    }
+
+
+    handleSubmit () {
+        this.props.actionSubmit(this.state.modalInput);
+    }
+
     render () {
 
 
@@ -11,14 +31,15 @@ class ModalCategory extends Component {
                 <div className="Modal-title">Category name</div>
                 <div className="Modal-content">
                     <input type="text" className="Modal-input"
-                           value={this.props.text}
-                           ref={input => this.modalInput = input}
-                           onChange={this.props.actionChange}
+                           value={this.state.modalInput}
+                           onChange={this.handleInputChange}
                     />
                 </div>
                 <div className="Modal-footer">
                     <button type="button" onClick={this.props.actionCancel}>Cancel</button>
-                    <button type="button" onClick={this.props.actionSubmit}>Ok</button>
+                    <button type="button"
+                            onClick={this.handleSubmit}
+                    >Ok</button>
                 </div>
             </div>
         );

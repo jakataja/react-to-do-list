@@ -7,9 +7,21 @@ import {Link} from 'react-router-dom';
 import './TaskItem.css';
 
 class TaskItem extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+
+    constructor (props) {
+        super(props);
+
+        this.state = {
+
+        };
+
+        this.handleTaskDone = this.handleTaskDone.bind(this);
+
+    }
+
+    handleTaskDone () {
+        this.props.setDone(this.props.item);
+    }
 
     render() {
 
@@ -23,9 +35,7 @@ class TaskItem extends Component {
                     <input type="checkbox"
                            className="task-list__item-checkbox"
                            checked={this.props.item.isDone}
-                           onChange={() => {
-                               this.props.setDone(this.props.item);
-                           }}
+                           onChange={this.handleTaskDone}
                     /> To-do Item: {this.props.item.name}
                 </label>
                 <Link to={"/task/" + this.props.item.id}  ><span className="icon-edit"></span></Link>
