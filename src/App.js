@@ -366,9 +366,11 @@ class App extends Component {
                     //</Switch>
                 //</Route>
             //</Router>
-            <Router history={browserHistory} >
-                <Main />
-            </Router>
+
+                <Router history={browserHistory} >
+                    <Main />
+                </Router>
+
         )
     }
 }
