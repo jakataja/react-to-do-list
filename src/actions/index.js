@@ -12,6 +12,7 @@ export const addTask = (name, parent, done) => ({ type: types.ADD_TASK, name, pa
 export const editTask = (name, done) => ({ type: types.EDIT_TASK });
 export const deleteTask = (name, done) => ({ type: types.DELETE_TASK });
 export const moveTask = (id, parentId) => ({ type: types.MOVE_TASK });
+export const doneTask = (id) => ({ type: types.DONE_TASK, id });
 
 export const searchTask = (text) => ({ type: types.SEARCH_TASK, text });
 export const filterDone = () => ({ type: types.FILTER_DONE });

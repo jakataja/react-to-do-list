@@ -3,7 +3,8 @@ import { BrowserRouter as Router, browserHistory, Route, Switch } from 'react-ro
 import { fromJS, List } from 'immutable';
 import './App.css';
 import './fontello.css';
-import ProgressBar from './ProgressBar';
+// import ProgressBar from './ProgressBar';
+import ProgressBarContainer from './containers/ProgressBarContainer';
 import Categories from './Categories';
 import ModalCategory from './ModalCategory';
 import MainView from './MainView';
@@ -270,12 +271,13 @@ class Main extends Component {
                   </div>
               </div>
             </section>
-            <ProgressBar list={this.state.list}
-                         tasks={this.state.tasks}
-                         categories={this.state.categories}
-            />
+            {/*<ProgressBar tasks={this.state.tasks}*/}
+                         {/*categories={this.state.categories}*/}
+            {/*/>*/}
+              <ProgressBarContainer />
 
             <main className="App-main">
+
 
                 <Switch>
                 <Route exact path="/" component={(routerprops) =>
@@ -294,24 +296,26 @@ class Main extends Component {
                     </div>
                 } />
 
-                <Route path="/category/:id/:done?" component={(routerprops) => {
-                    return <MainView state={this.state}
-                              categoryAction={{
-                                  actionSelect: this.handleSelectCategory,
-                                  actionAdd: this.handleAddCategory,
-                                  actionAddSubcategory: this.handleAddSubcategory,
-                                  actionUpdateCategory: this.handleUpdateCategory,
-                                  actionChange: this.handleInputChange
-                              }}
-                              taskAction={{
-                                  actionChange: this.handleInputChange,
-                                  actionAdd: this.handleAddTask,
-                                  setDone: this.handleSetDone
-                              }}
-                             router={routerprops}
-                    />
-                }
-                } />
+                {/*<Route path="/category/:id/:done?" component={(routerprops) => {*/}
+                    {/*return <MainView state={this.state}*/}
+                              {/*categoryAction={{*/}
+                                  {/*actionSelect: this.handleSelectCategory,*/}
+                                  {/*actionAdd: this.handleAddCategory,*/}
+                                  {/*actionAddSubcategory: this.handleAddSubcategory,*/}
+                                  {/*actionUpdateCategory: this.handleUpdateCategory,*/}
+                                  {/*actionChange: this.handleInputChange*/}
+                              {/*}}*/}
+                              {/*taskAction={{*/}
+                                  {/*actionChange: this.handleInputChange,*/}
+                                  {/*actionAdd: this.handleAddTask,*/}
+                                  {/*setDone: this.handleSetDone*/}
+                              {/*}}*/}
+                             {/*router={routerprops}*/}
+                    {/*/>*/}
+                {/*}*/}
+                {/*} />*/}
+
+                <Route path="/category/:id/:done?" component={ MainView } />
 
                 <Route path="/task/:id" component={(routerprops) => {
                     return <EditView state={this.state}
@@ -369,6 +373,9 @@ class App extends Component {
 
                 <Router history={browserHistory} >
                     <Main />
+                    {/*<Route path="/" component={ Main } >*/}
+                        {/*<Route path="/category/:id/:done?" component={ MainView } />*/}
+                    {/*</Route>*/}
                 </Router>
 
         )

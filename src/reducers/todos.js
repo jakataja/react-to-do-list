@@ -10,30 +10,14 @@ const initialState = [
     {id: 5, name: "To-do item 5", categoryId: 4, isDone: false}
 ];
 
+let nextTaskId = 6;
+
 const todos = (state = initialState, action) => {
     switch(action.type) {
-        case 'ADD_CATEGORY':
-            return {
-
-            };
-        case 'ADD_SUBCATEGORIES':
-            return {
-
-            };
-        case 'EDIT_CATEGORY':
-            return {
-
-            };
-
-        case 'DELETE_CATEGORY':
-            return {
-
-            };
-
         case 'ADD_TASK':
             return [
                 ...state, {
-                id: action.id,
+                id: nextTaskId++,
                 name: action.name,
                 categoryId: action.parent,
                 isDone: action.done
@@ -53,6 +37,13 @@ const todos = (state = initialState, action) => {
             return {
 
             };
+
+        case 'DONE_TASK':
+            return state.map(task =>
+                task.id === action.id ?
+                {...task, isDone: !task.isDone } :
+                task
+            );
 
         case 'FILTER_DONE':
             return {

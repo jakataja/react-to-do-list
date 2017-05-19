@@ -15,7 +15,7 @@ console.log(store.getState());
 
 let unsubscribe = store.subscribe(() =>
     console.log(store.getState())
-)
+);
 
 // Dispatch some actions
 store.dispatch(addTask('Learn about actions', 1, false));

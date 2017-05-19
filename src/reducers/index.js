@@ -3,9 +3,11 @@
  */
 import { combineReducers } from 'redux';
 import todos from './todos';
+import categories from './categories';
 
 const todoApp = combineReducers({
-    todos
+    todos,
+    categories
 });
 
 export default todoApp;
