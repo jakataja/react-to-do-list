@@ -1,4 +1,7 @@
 /**
+ * Created by Katarzyna_Bak on 23.05.2017.
+ */
+/**
  * Created by Katarzyna_Bak on 16.05.2017.
  */
 
@@ -12,16 +15,16 @@ const initialState = [
 
 let nextTaskId = 6;
 
-const todos = (state = initialState, action) => {
+const modal = (state = initialState, action) => {
     switch(action.type) {
         case 'ADD_TASK':
             return [
                 ...state, {
-                id: nextTaskId++,
-                name: action.name,
-                categoryId: action.parent,
-                isDone: false
-            }];
+                    id: nextTaskId++,
+                    name: action.name,
+                    categoryId: action.parent,
+                    isDone: false
+                }];
 
         case 'EDIT_TASK':
             return {
@@ -41,8 +44,8 @@ const todos = (state = initialState, action) => {
         case 'DONE_TASK':
             return state.map(task =>
                 task.id === action.id ?
-                {...task, isDone: !task.isDone } :
-                task
+                    {...task, isDone: !task.isDone } :
+                    task
             );
 
         case 'FILTER_DONE':

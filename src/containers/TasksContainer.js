@@ -3,7 +3,7 @@
  */
 
 import { connect } from 'react-redux';
-import { doneTask } from '../actions';
+import { addTask, doneTask } from '../actions';
 import TaskView from '../TaskView';
 
 const getTasksFromCategory = (todos, categoryId) => {
@@ -13,12 +13,16 @@ const getTasksFromCategory = (todos, categoryId) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        tasks: getTasksFromCategory(state.todos, ownProps.categoryId)
+        tasks: getTasksFromCategory(state.todos, ownProps.categoryId),
+        parent: parseInt(ownProps.categoryId, 10)
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onAddTask: (text, parent) => {
+            dispatch(addTask(text, parent));
+        },
         onTaskDone: (id) => {
             dispatch(doneTask(id));
         }

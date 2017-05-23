@@ -15,12 +15,17 @@ const initialState = [
     {id: 10, name: "Category 10", parentId: 4 },
 ];
 
+let nextCategoryId = 11;
+
 const categories = (state = initialState, action) => {
     switch(action.type) {
         case 'ADD_CATEGORY':
-            return {
-
-            };
+            return [
+                ...state, {
+                    id: nextCategoryId++,
+                    name: action.name,
+                    parentId: null
+                }];
         case 'ADD_SUBCATEGORIES':
             return {
 
@@ -31,9 +36,9 @@ const categories = (state = initialState, action) => {
             };
 
         case 'DELETE_CATEGORY':
-            return {
-
-            };
+            return state.filter(category =>
+                category.id !== action.id
+            );
 
         default:
             return state;

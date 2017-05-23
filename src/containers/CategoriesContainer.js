@@ -4,6 +4,7 @@
 
 import { connect } from 'react-redux';
 import Categories from './../Categories';
+import { addCategory, addSubcategory, deleteCategory, editCategory, deleteTask } from './../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +14,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+      onAddCategory: (text) => {
+          dispatch(addCategory(text));
+      },
+      onAddSubcategory: () => {
+          dispatch(addSubcategory());
+      },
+      onDeleteCategory: (id) => {
+          dispatch(deleteCategory(id));
+          dispatch(deleteTask(id));
+      },
+      onEditCategory: () => {
+          dispatch(editCategory());
+      }
   }
 };
 

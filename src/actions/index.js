@@ -8,9 +8,9 @@ export const addSubcategory = (name, parent) => ({ type: types.ADD_SUBCATEGORY, 
 export const editCategory = (id, name) => ({ type: types.EDIT_CATEGORY, id, name});
 export const deleteCategory = (id) => ({ type: types.DELETE_CATEGORY, id});
 
-export const addTask = (name, parent, done) => ({ type: types.ADD_TASK, name, parent, done });
+export const addTask = (name, parent) => ({ type: types.ADD_TASK, name, parent });
 export const editTask = (name, done) => ({ type: types.EDIT_TASK });
-export const deleteTask = (name, done) => ({ type: types.DELETE_TASK });
+export const deleteTask = (parent) => ({ type: types.DELETE_TASK, parent });
 export const moveTask = (id, parentId) => ({ type: types.MOVE_TASK });
 export const doneTask = (id) => ({ type: types.DONE_TASK, id });
 

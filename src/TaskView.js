@@ -69,7 +69,7 @@ import TaskItem from './TaskItem';
 //
 // }
 
-const TaskView = ({tasks, onTaskDone, onAddTask}) => (
+const TaskView = ({tasks, parent, onTaskDone, onAddTask}) => {
 
 
         // const {router} = this.props;
@@ -83,13 +83,17 @@ const TaskView = ({tasks, onTaskDone, onAddTask}) => (
         //     return task.categoryId === parseInt(router.match.params.id, 10);
         // });
 
+    let input;
+
+    return (
         <section className="tasks">
             <div className="tasks-add-form">
                 <input type="text" placeholder=""
                     // value={this.state.newTaskInputText}
                     // onChange={this.handleInputChange}
+                    ref={ node => input = node }
                 />
-                <button type="button" onClick={onAddTask}>Add</button>
+                <button type="button" onClick={() => {onAddTask(input.value, parent); input.value = ''; }  }>Add</button>
             </div>
             <ul className="tasks-list">
 
@@ -101,6 +105,6 @@ const TaskView = ({tasks, onTaskDone, onAddTask}) => (
 
             </ul>
         </section>
-);
+)};
 
 export default TaskView;

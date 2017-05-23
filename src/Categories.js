@@ -89,15 +89,16 @@ const Categories = ({ categories, onAddCategory, onAddSubcategory, onDeleteCateg
         />
     );
 
+    let input;
+
     return (
 
         <section className="categories">
             <div className="categories-add-form">
                 <input type="text" placeholder="Enter category title"
-                       // value={this.state.newCategoryInputText}
-                       // onChange={this.handleInputChange}
+                    ref={ node => {input = node} }
                 />
-                <button type="button" onClick={onAddCategory}>Add</button>
+                <button type="button" onClick={() => {onAddCategory(input.value); input.value = '';}}>Add</button>
             </div>
 
             <ul className="category-list">

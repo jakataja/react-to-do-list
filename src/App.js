@@ -5,7 +5,8 @@ import './App.css';
 import './fontello.css';
 // import ProgressBar from './ProgressBar';
 import ProgressBarContainer from './containers/ProgressBarContainer';
-import Categories from './Categories';
+// import Categories from './Categories';
+import CategoriesContainer from './containers/CategoriesContainer';
 import ModalCategory from './ModalCategory';
 import MainView from './MainView';
 import EditView from './EditView';
@@ -280,21 +281,23 @@ class Main extends Component {
 
 
                 <Switch>
-                <Route exact path="/" component={(routerprops) =>
-                    <div className="view-container">
-                    <Categories list={this.state.categories}
-                                actionSelect={this.handleSelectCategory}
-                                actionAdd={this.handleAddCategory}
-                                actionAddSubcategory={this.handleAddSubcategory}
-                                actionUpdateCategory={this.handleUpdateCategory}
-                                isActive={this.state.activeCategory}
-                                actionChange={this.handleInputChange}
-                                ref={component => this.categoriesComponent = component}
-                                inputValue={this.state.addCategoryInputText}
-                                router={routerprops}
-                    />
-                    </div>
-                } />
+                    <Route exact path="/" component={ CategoriesContainer } />
+
+                {/*<Route exact path="/" component={(routerprops) =>*/}
+                    {/*<div className="view-container">*/}
+                    {/*<Categories list={this.state.categories}*/}
+                                {/*actionSelect={this.handleSelectCategory}*/}
+                                {/*actionAdd={this.handleAddCategory}*/}
+                                {/*actionAddSubcategory={this.handleAddSubcategory}*/}
+                                {/*actionUpdateCategory={this.handleUpdateCategory}*/}
+                                {/*isActive={this.state.activeCategory}*/}
+                                {/*actionChange={this.handleInputChange}*/}
+                                {/*ref={component => this.categoriesComponent = component}*/}
+                                {/*inputValue={this.state.addCategoryInputText}*/}
+                                {/*router={routerprops}*/}
+                    {/*/>*/}
+                    {/*</div>*/}
+                {/*} />*/}
 
                 {/*<Route path="/category/:id/:done?" component={(routerprops) => {*/}
                     {/*return <MainView state={this.state}*/}

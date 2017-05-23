@@ -106,9 +106,11 @@ console.log(props);
                 <span className="CategoryItem__edit-icon icon-edit"
                       onClick={() => onEditCategory() }
                 ></span>
-                <span className="CategoryItem__delete-icon">
-                    <i className="icon-trash-empty"></i>
-                </span>
+                <span className="CategoryItem__delete-icon icon-trash-empty"
+                      onClick={ () => {
+                          onDeleteCategory(id);
+                      }}
+                ></span>
                 <span className="CategoryItem__add-icon icon-plus" onClick={() => onAddSubcategory() }></span>
             </div>
             <Subcategories list={sublevel}
