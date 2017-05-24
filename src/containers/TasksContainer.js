@@ -7,7 +7,7 @@ import { addTask, doneTask } from '../actions';
 import TaskView from '../TaskView';
 
 const getTasksFromCategory = (todos, categoryId) => {
-  return todos.filter(todo => todo.categoryId === parseInt(categoryId));
+  return todos.filter(todo => todo.categoryId === parseInt(categoryId, 10));
 };
 
 

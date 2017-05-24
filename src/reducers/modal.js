@@ -64,4 +64,4 @@ const modal = (state = initialState, action) => {
 };
 
 // const todo = () => {};
-export default todos;
+export default modal;

@@ -1,27 +1,23 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Categories.css';
 import CategoryItemEdit from './CategoryItemEdit';
 
-class CategoriesEdit extends Component {
+const CategoriesEdit = ({ categories, taskId, onMoveTask }) => {
 
-    render() {
-
-        const level = this.props.list.filter((category) => {
+        const level = categories.filter((category) => {
                 return category.parentId === null;
             }
         );
 
         // const categoryItems = this.props.list.map((category) =>
-        const categoryItems = level.map((category) =>
+        const categoryItems = level.map(category =>
 
             <CategoryItemEdit key={category.id.toString()}
-                          item={category}
-                          onSelect={this.props.actionSelect}
-                          isActive={this.props.isActive}
-                          actionAddSubcategory={this.props.actionAddSubcategory}
-                          actionUpdateCategory={this.props.actionUpdateCategory}
-                          categories={this.props.list}
-                              router={this.props.router}
+                          {...category}
+                          // onSelect={this.props.actionSelect}
+                          // isActive={this.props.isActive}
+                          categories={categories}
+                              onMoveTask={ () => onMoveTask(taskId, category.id) }
 
             />
         );
@@ -34,7 +30,7 @@ class CategoriesEdit extends Component {
                 </ul>
             </section>
         );
-    }
-}
+
+};
 
 export default CategoriesEdit;

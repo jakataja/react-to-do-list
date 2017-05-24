@@ -23,15 +23,19 @@ const todos = (state = initialState, action) => {
                 isDone: false
             }];
 
-        case 'EDIT_TASK':
-            return {
-
-            };
+        case 'UPDATE_TASK':
+            return state.map(task =>
+                task.id === action.id ?
+                    {...task, name: action.name, isDone: action.done } :
+                    task
+            );
 
         case 'MOVE_TASK':
-            return {
-
-            };
+            return state.map(task =>
+                task.id === parseInt(action.id, 10) ?
+                    {...task, categoryId: action.parentId } :
+                    task
+            );
 
         case 'DELETE_TASK':
             return state.filter(task =>
@@ -60,5 +64,4 @@ const todos = (state = initialState, action) => {
     }
 };
 
-// const todo = () => {};
 export default todos;

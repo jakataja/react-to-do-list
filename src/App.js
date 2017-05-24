@@ -3,9 +3,7 @@ import { BrowserRouter as Router, browserHistory, Route, Switch } from 'react-ro
 import { fromJS, List } from 'immutable';
 import './App.css';
 import './fontello.css';
-// import ProgressBar from './ProgressBar';
 import ProgressBarContainer from './containers/ProgressBarContainer';
-// import Categories from './Categories';
 import CategoriesContainer from './containers/CategoriesContainer';
 import ModalCategory from './ModalCategory';
 import MainView from './MainView';
@@ -16,48 +14,6 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list : [
-                {id: 1, name: "Category 1", subcategories: [
-                    {id: 5, name: "Subcategory 1", subcategories: [], tasks: []},
-                    {id: 6, name: "Subcategory 2", subcategories: [], tasks: []}
-                ], tasks: [
-                    {id: 12, name: "To-do item 1", isDone: false}
-                ]},
-                {id: 2, name: "Category 2", subcategories: [
-                    {id: 7, name: "Subcategory 2", subcategories: [], tasks: []}
-                ], tasks: [
-                    {id: 11, name: "To-do item 1", isDone: true}
-                ]},
-                {id: 3, name: "Category 3", subcategories: [], tasks: []},
-                {id: 4, name: "Category 4", subcategories: [
-                    {id: 8, name: "Subcategory 1", subcategories: [], tasks: []},
-                    {id: 9, name: "Subcategory 2", subcategories: [], tasks: []},
-                    {id: 10, name: "Subcategory 3", subcategories: [], tasks: []}
-                ], tasks: [
-                    {id: 1, name: "To-do item 1", isDone: false},
-                    {id: 2, name: "To-do item 2", isDone: false},
-                    {id: 3, name: "To-do item 3", isDone: false}
-                ]}
-            ],
-            categories: [
-                {id: 1, name: "Category 1", parentId: null },
-                {id: 2, name: "Category 2", parentId: null },
-                {id: 3, name: "Category 3", parentId: null },
-                {id: 4, name: "Category 4", parentId: null },
-                {id: 5, name: "Category 5", parentId: 1 },
-                {id: 6, name: "Category 6", parentId: 1 },
-                {id: 7, name: "Category 7", parentId: 2 },
-                {id: 8, name: "Category 8", parentId: 4 },
-                {id: 9, name: "Category 9", parentId: 4 },
-                {id: 10, name: "Category 10", parentId: 4 },
-            ],
-            tasks: [
-                {id: 1, name: "To-do item 1", categoryId: 1, isDone: false},
-                {id: 2, name: "To-do item 2", categoryId: 2, isDone: false},
-                {id: 3, name: "To-do item 3", categoryId: 4, isDone: false},
-                {id: 4, name: "To-do item 4", categoryId: 4, isDone: true},
-                {id: 5, name: "To-do item 5", categoryId: 4, isDone: false}
-            ],
             mode: 0, // 0 - display, 1 - edit
             activeCategory: null,
             addCategoryInputText: '',
@@ -279,68 +235,10 @@ class Main extends Component {
 
             <main className="App-main">
 
-
                 <Switch>
                     <Route exact path="/" component={ CategoriesContainer } />
-
-                {/*<Route exact path="/" component={(routerprops) =>*/}
-                    {/*<div className="view-container">*/}
-                    {/*<Categories list={this.state.categories}*/}
-                                {/*actionSelect={this.handleSelectCategory}*/}
-                                {/*actionAdd={this.handleAddCategory}*/}
-                                {/*actionAddSubcategory={this.handleAddSubcategory}*/}
-                                {/*actionUpdateCategory={this.handleUpdateCategory}*/}
-                                {/*isActive={this.state.activeCategory}*/}
-                                {/*actionChange={this.handleInputChange}*/}
-                                {/*ref={component => this.categoriesComponent = component}*/}
-                                {/*inputValue={this.state.addCategoryInputText}*/}
-                                {/*router={routerprops}*/}
-                    {/*/>*/}
-                    {/*</div>*/}
-                {/*} />*/}
-
-                {/*<Route path="/category/:id/:done?" component={(routerprops) => {*/}
-                    {/*return <MainView state={this.state}*/}
-                              {/*categoryAction={{*/}
-                                  {/*actionSelect: this.handleSelectCategory,*/}
-                                  {/*actionAdd: this.handleAddCategory,*/}
-                                  {/*actionAddSubcategory: this.handleAddSubcategory,*/}
-                                  {/*actionUpdateCategory: this.handleUpdateCategory,*/}
-                                  {/*actionChange: this.handleInputChange*/}
-                              {/*}}*/}
-                              {/*taskAction={{*/}
-                                  {/*actionChange: this.handleInputChange,*/}
-                                  {/*actionAdd: this.handleAddTask,*/}
-                                  {/*setDone: this.handleSetDone*/}
-                              {/*}}*/}
-                             {/*router={routerprops}*/}
-                    {/*/>*/}
-                {/*}*/}
-                {/*} />*/}
-
-                <Route path="/category/:id/:done?" component={ MainView } />
-
-                <Route path="/task/:id" component={(routerprops) => {
-                    return <EditView state={this.state}
-                                     categoryAction={{
-                                         actionSelect: this.handleSelectCategory,
-                                         actionAdd: this.handleAddCategory,
-                                         actionAddSubcategory: this.handleAddSubcategory,
-                                         actionUpdateCategory: this.handleUpdateCategory,
-                                         actionChange: this.handleInputChange
-                                      }}
-                                     taskAction={{
-                                         actionChange: this.handleInputChange,
-                                         actionAdd: this.handleAddTask,
-                                         setDone: this.handleSetDone,
-                                         saveTask: this.handleSaveTask
-                                     }}
-                                     router={routerprops}
-                    />
-                }
-                } />
-
-
+                    <Route path="/category/:id/:done?" component={ MainView } />
+                    <Route path="/task/:id" component={ EditView } />
                 </Switch>
 
             </main>
@@ -361,7 +259,6 @@ class Main extends Component {
 class App extends Component {
 
 
-
     render() {
         return (
             //<Router>
@@ -376,9 +273,6 @@ class App extends Component {
 
                 <Router history={browserHistory} >
                     <Main />
-                    {/*<Route path="/" component={ Main } >*/}
-                        {/*<Route path="/category/:id/:done?" component={ MainView } />*/}
-                    {/*</Route>*/}
                 </Router>
 
         )
