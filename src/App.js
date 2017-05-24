@@ -29,60 +29,17 @@ class Main extends Component {
         };
 
         this.handleSelectCategory = this.handleSelectCategory.bind(this);
-        this.handleAddCategory = this.handleAddCategory.bind(this);
-        this.handleAddTask = this.handleAddTask.bind(this);
         this.handleAddSubcategory = this.handleAddSubcategory.bind(this);
         this.handleUpdateCategory = this.handleUpdateCategory.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCancelModalCategory = this.handleCancelModalCategory.bind(this);
         this.handleSubmitModalCategory = this.handleSubmitModalCategory.bind(this);
-        this.handleCountCategories = this.handleCountCategories.bind(this);
         this.handleShowDone =  this.handleShowDone.bind(this);
-        this.handleSetDone =  this.handleSetDone.bind(this);
-        this.handleSaveTask =  this.handleSaveTask.bind(this);
     }
 
     handleSelectCategory(category) {
         this.setState({
             activeCategory: category
-        });
-    }
-
-    handleAddCategory(category) {
-        if(category.name === '') return;
-
-        const newCategory = {
-            id: this.state.nextCatId,
-            name: category.name,
-            parentId: null
-        };
-
-        let newList = this.state.categories;
-        newList.unshift(newCategory);
-
-        this.setState({
-            categories: newList,
-            nextCatId: this.state.nextCatId + 1
-        });
-    }
-
-    handleAddTask(task) {
-
-        if(task.name === '') return;
-
-        const newTask = {
-            id: this.state.nextTaskId,
-            name: task.name,
-            categoryId: task.categoryId,
-            isDone: false
-        };
-
-        let newList = this.state.tasks;
-        newList.unshift(newTask);
-
-        this.setState({
-            tasks: newList,
-            nextTaskId: this.state.nextTaskId + 1
         });
     }
 
@@ -166,45 +123,11 @@ class Main extends Component {
         }
     }
 
-    handleCountCategories() {
-        this.setState({
-            numOfCategories: this.state.numOfCategories + 1
-        });
-    }
-
     handleShowDone() {
         this.setState({ showDone: this.doneCheckbox.checked });
     }
 
-    handleSetDone(task) {
-
-        let tasks = fromJS(this.state.tasks);
-        const taskIndex = this.state.tasks.indexOf(task);
-        const newTasks = tasks.updateIn([taskIndex, 'isDone'], isDone => !task.isDone).toJS();
-
-        this.setState({tasks: newTasks});
-    }
-
-    handleSaveTask(task) {
-
-        const tasks = List(this.state.tasks);
-        let taskIndex;
-        this.state.tasks.filter((item, index) => {
-            if(item.id === task.id) {
-                taskIndex = index;
-                return true;
-            }
-            return false;
-        });
-        const newTasks = tasks.update(taskIndex, item => task).toJS();
-
-        this.setState({tasks: newTasks});
-
-    }
-
     render() {
-
-        this.list = this.state.list;
 
         return (
           <div className="App">
@@ -228,12 +151,9 @@ class Main extends Component {
                   </div>
               </div>
             </section>
-            {/*<ProgressBar tasks={this.state.tasks}*/}
-                         {/*categories={this.state.categories}*/}
-            {/*/>*/}
-              <ProgressBarContainer />
+            <ProgressBarContainer />
 
-            <main className="App-main">
+            <main className="App-main" >
 
                 <Switch>
                     <Route exact path="/" component={ CategoriesContainer } />
@@ -242,7 +162,6 @@ class Main extends Component {
                 </Switch>
 
             </main>
-
 
             {this.state.modalCategoryActive &&
               <ModalCategory actionCancel={this.handleCancelModalCategory}
@@ -261,20 +180,9 @@ class App extends Component {
 
     render() {
         return (
-            //<Router>
-                //<Route component={Main} >
-                    //<Switch>
-                    //<Route path="/" component={Categories} />
-                    //<Route path="/category/:id" component={Categories} />
-                    //<Route path="/task/:id" component={TaskView} />
-                    //</Switch>
-                //</Route>
-            //</Router>
-
-                <Router history={browserHistory} >
-                    <Main />
-                </Router>
-
+            <Router history={browserHistory} >
+            <Main />
+            </Router>
         )
     }
 }

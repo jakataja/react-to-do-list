@@ -17,9 +17,6 @@ let unsubscribe = store.subscribe(() =>
     console.log(store.getState())
 );
 
-// Dispatch some actions
-store.dispatch(addTask('Learn about actions', 1, false));
-
 ReactDOM.render(
     <Provider store={store} >
         <App/>
