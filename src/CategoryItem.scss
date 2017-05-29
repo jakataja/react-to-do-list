@@ -29,6 +29,14 @@ $category-border-color: #cdcdcd;
         .active > & {
             border-bottom: 1px solid $category-border-color;
         }
+
+        .current > & {
+            background: #ff0000;
+        }
+
+        .new > & {
+            background: #b5ff88;
+        }
     }
 
     & & &__wrapper {

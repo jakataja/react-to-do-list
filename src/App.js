@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, browserHistory, Route, Switch } from 'react-router-dom';
-import { fromJS, List } from 'immutable';
+import { fromJS } from 'immutable';
 import './App.css';
 import './fontello.css';
 import ProgressBarContainer from './containers/ProgressBarContainer';
@@ -30,7 +30,6 @@ class Main extends Component {
 
         this.handleSelectCategory = this.handleSelectCategory.bind(this);
         this.handleAddSubcategory = this.handleAddSubcategory.bind(this);
-        this.handleUpdateCategory = this.handleUpdateCategory.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCancelModalCategory = this.handleCancelModalCategory.bind(this);
         this.handleSubmitModalCategory = this.handleSubmitModalCategory.bind(this);
@@ -49,16 +48,6 @@ class Main extends Component {
             modalCategoryActive: true,
             modalCategoryState: 'add',
             categoryToUpdate: parent
-        });
-    }
-
-    handleUpdateCategory(node) {
-
-        this.setState({
-            modalCategoryActive: true,
-            modalCategoryState: 'update',
-            modalCategoryInputText: node.name,
-            categoryToUpdate: node
         });
     }
 
@@ -157,8 +146,9 @@ class Main extends Component {
 
                 <Switch>
                     <Route exact path="/" component={ CategoriesContainer } />
-                    <Route path="/category/:id/:done?" component={ MainView } />
-                    <Route path="/task/:id" component={ EditView } />
+                    <Route exact path="/category/:id/:done?" component={ MainView } />
+                    <Route path="/category/:cid/task/:id" component={ EditView } />
+                    <Route path="*" component={ CategoriesContainer } />
                 </Switch>
 
             </main>

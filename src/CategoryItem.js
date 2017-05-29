@@ -7,16 +7,19 @@ import './CategoryItem.css';
 import { Link } from 'react-router-dom';
 
 const Subcategories = (props) => {
-    if (props.list.length === 0) {
+
+    if (props.categories.length === 0) {
         return null;
     }
 
-    const subcategoryItems = props.list.map((category) =>
+    const subcategoryItems = props.categories.map(category =>
         <CategoryItem key={category.id.toString()}
-                      item={category}
-                      isActive={props.isActive}
+                      onAddSubcategory={props.onAddSubcategory}
+                      onDeleteCategory={props.onDeleteCategory}
+                      onEditCategory={props.onEditCategory}
+                      {...category}
                       categories={props.categories}
-                      categoryAction={props.categoryAction}
+                      active={props.active}
         />
     );
 
@@ -29,31 +32,28 @@ const Subcategories = (props) => {
 
 const CategoryItem = (props) => {
 
-    const {id, name, parentId, categories, onAddSubcategory, onDeleteCategory, onEditCategory, onSelectCategory } = props;
+    const {id, name, categories, active, onAddSubcategory, onDeleteCategory, onEditCategory } = props;
 
     let acitveClass = '';
+    if (active.indexOf(id) !== -1) {
+        acitveClass = 'active';
+    }
 
-    // if (router && props.item.id === parseInt(router.match.params.id, 10)) {
-    //     acitveClass = 'active';
-    // }
-
-    const sublevel = categories.filter((item) => {
+    const sublevel = categories.filter(item => {
         return item.parentId === id;
     });
 
     return (
-        <li className={"CategoryItem " + acitveClass} >
+        <li className={`CategoryItem ${acitveClass}`} >
             <div className="CategoryItem__wrapper">
                 <span className="CategoryItem__down-icon">
                     <i className="icon-down-open"></i>
                 </span>
-                <span className="CategoryItem__name"
-                    // onClick={() => props.onSelect(props.item) }>
-                >
+                <span className="CategoryItem__name">
                     <Link to={`/category/${id}`}>{name}</Link>
                 </span>
                 <span className="CategoryItem__edit-icon icon-edit"
-                      onClick={() => onEditCategory() }
+                      onClick={() => onEditCategory()}
                 ></span>
                 <span className="CategoryItem__delete-icon icon-trash-empty"
                       onClick={ () => {
@@ -62,12 +62,13 @@ const CategoryItem = (props) => {
                 ></span>
                 <span className="CategoryItem__add-icon icon-plus" onClick={() => onAddSubcategory() }></span>
             </div>
-            <Subcategories list={sublevel}
-                           // onSelectCategory={onSelectCategory}
-                           isActive={props.isActive}
-                           categoryAction={props.categoryAction}
-                           categories={categories}
 
+            <Subcategories
+                           onAddSubcategory={onAddSubcategory}
+                           onDeleteCategory={onDeleteCategory}
+                           onEditCategory={onEditCategory}
+                           active={active}
+                           categories={sublevel}
             />
         </li>
     );

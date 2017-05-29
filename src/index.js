@@ -5,12 +5,11 @@ import './index.css';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import todoApp from './reducers/';
-import { addTask } from './actions/';
 
 const store = createStore(todoApp);
 
-console.log('store', store);
-console.log(store.getState());
+// console.log('store', store);
+// console.log(store.getState());
 
 
 let unsubscribe = store.subscribe(() =>

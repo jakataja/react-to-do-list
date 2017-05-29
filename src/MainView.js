@@ -5,8 +5,8 @@ import CategoriesContainer from './containers/CategoriesContainer';
 const MainView = ({ match }) => {
     return(
         <div className="view-container">
-            <CategoriesContainer />
-            <TasksContainer categoryId={match.params.id}/>
+            <CategoriesContainer categoryId={match.params.id} />
+            <TasksContainer categoryId={match.params.id} />
         </div>
     )
 };

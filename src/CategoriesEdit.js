@@ -2,7 +2,7 @@ import React from 'react';
 import './Categories.css';
 import CategoryItemEdit from './CategoryItemEdit';
 
-const CategoriesEdit = ({ categories, taskId, onMoveTask }) => {
+const CategoriesEdit = ({ categories, taskId, categoryId, onMoveTask }) => {
 
         const level = categories.filter((category) => {
                 return category.parentId === null;

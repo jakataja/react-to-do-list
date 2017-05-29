@@ -4,62 +4,45 @@
 
 import React from 'react';
 import './CategoryItem.css';
+import CategoryEditLevelContainer from './containers/CategoryEditLevelContainer';
 
-const Subcategories = (props) => {
-    if (props.list.length === 0) {
-        return null;
+const CategoryItemEdit = ({ category, isActive, cid, tid, onMoveTask, history }) => {
+
+    let acitveClass = '', currClass = '';
+
+    if (isActive) {
+        acitveClass = 'active';
     }
 
-    const subcategoryItems = props.list.map((category) =>
-        <CategoryItemEdit key={category.id.toString()}
-                      item={category}
-                      onSelect={props.action}
-                      isActive={props.isActive}
-                      categories={props.categories}
-        />
-    );
+    if (category.id === cid) {
+        currClass = 'current';
+    }
+
+    const handleMoveTask = () => {
+        onMoveTask(tid, category.id);
+        history.push(`/category/${category.id}/task/${tid}`);
+    };
+
+    const handleClick = (e) => {
+        e.target.parentNode.classList.toggle('active');
+    };
 
     return (
-        <ul>
-            {subcategoryItems}
-        </ul>
-    );
-};
-
-const CategoryItemEdit = ({ id, name, parentId, categories, onMoveTask}) => {
-
-    let acitveClass = '';
-
-    // if (props.item === props.isActive) {
-    //     acitveClass = 'active';
-    // }
-
-    const sublevel = categories.filter(item => {
-        return parentId === item.id;
-    });
-
-    return (
-        <li className={"CategoryItem " + acitveClass} >
-            <div className="CategoryItem__wrapper">
+        <li className={`CategoryItem ${acitveClass} ${currClass}`} >
+            <div className="CategoryItem__wrapper"
+                onClick={ handleClick }
+                >
                 <span className="CategoryItem__down-icon">
                     <i className="icon-down-open"></i>
                 </span>
-                <span className="CategoryItem__name"
-                      // onClick={() => props.onSelect(props.item) }
-                >
-                    {name}
+                <span className="CategoryItem__name">
+                    {category.name}
                 </span>
                 <span className="CategoryItem__back-icon icon-reply"
-                      onClick={ onMoveTask }
+                      onClick={ handleMoveTask }
                 ></span>
             </div>
-            <Subcategories list={sublevel}
-                           // action={props.onSelect}
-                           // isActive={props.isActive}
-                           // actionAddSubcategory={props.actionAddSubcategory}
-                           // actionUpdateCategory={props.actionUpdateCategory}
-                           categories={categories}
-            />
+            <CategoryEditLevelContainer parentId={category.id} cid={cid} tid={tid} history={history}/>
         </li>
     );
 };

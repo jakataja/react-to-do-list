@@ -6,7 +6,7 @@ import React from 'react';
 import './Categories.css';
 import CategoryItem from './CategoryItem';
 
-const Categories = ({ categories, onAddCategory, onAddSubcategory, onDeleteCategory, onEditCategory }) => {
+const Categories = ({ categories, active,  onAddCategory, onAddSubcategory, onDeleteCategory, onEditCategory }) => {
 
     const level = categories.filter((category) => {
             return category.parentId === null;
@@ -21,6 +21,7 @@ const Categories = ({ categories, onAddCategory, onAddSubcategory, onDeleteCateg
                       onEditCategory={onEditCategory}
                       {...category}
                       categories={categories}
+                      active={active}
         />
     );
 

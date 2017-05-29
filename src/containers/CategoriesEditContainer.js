@@ -8,7 +8,8 @@ import CategoriesEdit from './../CategoriesEdit';
 const mapStateToProps = (state, ownProps) => {
      return {
         categories: state.categories,
-        taskId: ownProps.id
+        taskId: ownProps.id,
+        categoryId: ownProps.cid
      }
 };
 

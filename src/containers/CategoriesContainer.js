@@ -6,9 +6,23 @@ import { connect } from 'react-redux';
 import Categories from './../Categories';
 import { addCategory, addSubcategory, deleteCategory, editCategory, deleteTask } from './../actions';
 
-const mapStateToProps = (state) => {
+const getActiveTreeById = (id, categories) => {
+    let active = [];
+    while(id !== null && id !== undefined) {
+        id = parseInt(id, 10);
+        active.push(id);
+        id = categories.filter(category =>
+            parseInt(category.id, 10) === id
+        )[0].parentId;
+    }
+
+    return active;
+};
+
+const mapStateToProps = (state, ownProps) => {
   return {
-      categories: state.categories
+      categories: state.categories,
+      active: getActiveTreeById(ownProps.categoryId, state.categories)
   }
 };
 

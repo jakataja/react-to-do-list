@@ -17,7 +17,7 @@ const TaskItem = ({id, name, categoryId, isDone, onTaskDone}) => (
                    onChange={ () => onTaskDone(id) }
             /> To-do Item: {name}
         </label>
-        <Link to={"/task/" + id }  ><span className="icon-edit"></span></Link>
+        <Link to={`${categoryId}/task/${id}` }  ><span className="icon-edit"></span></Link>
     </li>
 );
 
