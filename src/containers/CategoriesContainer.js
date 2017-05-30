@@ -21,8 +21,8 @@ const getActiveTreeById = (id, categories) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-      categories: state.categories,
-      active: getActiveTreeById(ownProps.categoryId, state.categories)
+      categories: state.categories.present,
+      active: getActiveTreeById(ownProps.categoryId, state.categories.present)
   }
 };
 

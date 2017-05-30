@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import ProgressBar from '../ProgressBar';
 import '../ProgressBar.css';
 
-
 const isDone = (element, index, array) => element.isDone;
 
 const countDoneTasks = (categories, tasks) => {
@@ -39,7 +38,7 @@ const countProgress = (categories, tasks) => {
 
 const mapStateToProps = (state) => {
     return {
-        progress: countProgress(state.categories, state.todos)
+        progress: countProgress(state.categories.present, state.todos.present)
     }
 };
 

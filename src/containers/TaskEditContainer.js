@@ -12,8 +12,8 @@ const getTaskById = (todos, id) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        categories: state.categories,
-        task: getTaskById(state.todos, ownProps.id),
+        categories: state.categories.present,
+        task: getTaskById(state.todos.present, ownProps.id),
         history: ownProps.history,
         cid: parseInt(ownProps.cid, 10),
         tid: parseInt(ownProps.id, 10)
@@ -24,11 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onTaskUpdate: (id, text, isDone) => {
             dispatch(updateTask(id, text, isDone));
-        },
-        // onMoveTask: (id, parentId) => {
-        //     console.log(id, ' to ', parentId);
-        //     dispatch(moveTask(id, parentId));
-        // }
+        }
     }
 };
 

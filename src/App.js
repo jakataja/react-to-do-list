@@ -8,10 +8,12 @@ import ModalContainer from './containers/ModalContainer';
 import FilterContainer from './containers/FilterContainer';
 import MainView from './MainView';
 import EditView from './EditView';
+import UndoRedo from './containers/UndoRedo';
 
 const Main = () => {
     return (
       <div className="App">
+          <UndoRedo />
         <section className="App-header">
           <div>
             <h2>To-Do List</h2>

@@ -7,7 +7,7 @@ import CategoriesEdit from './../CategoriesEdit';
 
 const mapStateToProps = (state, ownProps) => {
      return {
-        categories: state.categories,
+        categories: state.categories.present,
         taskId: ownProps.id,
         categoryId: ownProps.cid
      }
@@ -16,7 +16,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onMoveTask: (id, parentId) => {
-            console.log(id, ' to ', parentId);
             dispatch(moveTask(id, parentId));
         }
     }

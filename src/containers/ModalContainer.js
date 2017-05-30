@@ -13,7 +13,7 @@ const getCategoryById = (id, categories) => {
 };
 
 const mapStateToProps = (state) => {
-    const category = getCategoryById(state.modal.categoryId, state.categories);
+    const category = getCategoryById(state.modal.categoryId, state.categories.present);
 
     return {
         id: category.id,

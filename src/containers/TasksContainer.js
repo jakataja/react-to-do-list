@@ -22,7 +22,7 @@ const getTasksFromCategory = (todos, categoryId, filter) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        tasks: getTasksFromCategory(state.todos, ownProps.categoryId, state.filter),
+        tasks: getTasksFromCategory(state.todos.present, ownProps.categoryId, state.filter),
         parent: parseInt(ownProps.categoryId, 10)
     }
 };

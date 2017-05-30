@@ -6,10 +6,11 @@ import todos from './todos';
 import categories from './categories';
 import modal from './modal';
 import filter from './filter';
+import undoable from 'redux-undo';
 
 const todoApp = combineReducers({
-    todos,
-    categories,
+    todos: undoable(todos),
+    categories: undoable(categories),
     modal,
     filter
 });

@@ -11,7 +11,7 @@ const getCategoriesByParentId = (categories, parentId) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        categories: getCategoriesByParentId(state.categories, ownProps.parentId),
+        categories: getCategoriesByParentId(state.categories.present, ownProps.parentId),
         pid: ownProps.parentId,
         cid: ownProps.cid,
         tid: ownProps.tid,

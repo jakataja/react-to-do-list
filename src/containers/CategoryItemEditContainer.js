@@ -32,8 +32,8 @@ const isActiveCategory = (id, cid, categories) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        category: getCategoryById(ownProps.id, state.categories),
-        isActive: isActiveCategory(ownProps.id, ownProps.cid, state.categories),
+        category: getCategoryById(ownProps.id, state.categories.present),
+        isActive: isActiveCategory(ownProps.id, ownProps.cid, state.categories.present),
         cid: ownProps.cid,
         tid: ownProps.tid,
         history: ownProps.history
