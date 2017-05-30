@@ -6,14 +6,23 @@ import { connect } from 'react-redux';
 import { addTask, doneTask } from '../actions';
 import TaskView from '../TaskView';
 
-const getTasksFromCategory = (todos, categoryId) => {
-  return todos.filter(todo => todo.categoryId === parseInt(categoryId, 10));
+const getTasksFromCategory = (todos, categoryId, filter) => {
+
+    return todos.filter(todo =>
+      filter.type === 'SHOW_DONE' ?
+          todo.categoryId === parseInt(categoryId, 10) && todo.isDone === true :
+          todo.categoryId === parseInt(categoryId, 10)
+      ).filter(todo => {
+        const pattern = new RegExp(filter.pattern,'gi');
+        return todo.name.match(pattern);
+      }
+    );
 };
 
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        tasks: getTasksFromCategory(state.todos, ownProps.categoryId),
+        tasks: getTasksFromCategory(state.todos, ownProps.categoryId, state.filter),
         parent: parseInt(ownProps.categoryId, 10)
     }
 };

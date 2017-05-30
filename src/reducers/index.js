@@ -5,11 +5,13 @@ import { combineReducers } from 'redux';
 import todos from './todos';
 import categories from './categories';
 import modal from './modal';
+import filter from './filter';
 
 const todoApp = combineReducers({
     todos,
     categories,
-    modal
+    modal,
+    filter
 });
 
 export default todoApp;

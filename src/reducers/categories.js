@@ -21,20 +21,26 @@ const categories = (state = initialState, action) => {
     switch(action.type) {
         case 'ADD_CATEGORY':
             return [
-                ...state, {
+                {
                     id: nextCategoryId++,
                     name: action.name,
                     parentId: null
-                }];
-        case 'ADD_SUBCATEGORIES':
-            return {
-
-            };
+                }, ...state
+            ];
+        case 'ADD_SUBCATEGORY':
+            return [
+                {
+                    id: nextCategoryId++,
+                    name: action.name,
+                    parentId: action.parentId
+                }, ...state
+            ];
         case 'EDIT_CATEGORY':
-            return {
-
-            };
-
+             return state.map(category =>
+                    category.id === action.id ?
+                        {...category, name: action.name } :
+                        category
+                );
         case 'DELETE_CATEGORY':
             return state.filter(category =>
                 category.id !== action.id

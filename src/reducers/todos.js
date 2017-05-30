@@ -49,16 +49,6 @@ const todos = (state = initialState, action) => {
                 task
             );
 
-        case 'FILTER_DONE':
-            return {
-
-            };
-
-        case 'SEARCH_TASK':
-            return {
-
-            };
-
         default:
             return state;
     }

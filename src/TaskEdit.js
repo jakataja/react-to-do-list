@@ -4,9 +4,6 @@
 
 import React from 'react';
 import './TaskEdit.css';
-// import CategoryItemEdit from './CategoryItemEdit';
-// import CategoryEditLevel from './CategoryEditLevel';
-// import CategoryItemEditContainer from './containers/CategoryItemEditContainer';
 import CategoryEditLevelContainer from './containers/CategoryEditLevelContainer';
 
 const TaskEdit = ({ categories, task, cid, tid, onTaskUpdate, history }) =>  {

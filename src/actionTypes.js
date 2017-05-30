@@ -13,5 +13,8 @@ export const DELETE_TASK = 'DELETE_TASK';
 export const MOVE_TASK = 'MOVE_TASK';
 export const DONE_TASK = 'DONE_TASK';
 
-export const FILTER_DONE = 'FILTER_DONE';
+export const FILTER_TASKS = 'FILTER_TASKS';
 export const SEARCH_TASK = 'SEARCH_TASK';
+
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';

@@ -53,14 +53,14 @@ const CategoryItem = (props) => {
                     <Link to={`/category/${id}`}>{name}</Link>
                 </span>
                 <span className="CategoryItem__edit-icon icon-edit"
-                      onClick={() => onEditCategory()}
+                      onClick={() => onEditCategory(id)}
                 ></span>
                 <span className="CategoryItem__delete-icon icon-trash-empty"
                       onClick={ () => {
                           onDeleteCategory(id);
                       }}
                 ></span>
-                <span className="CategoryItem__add-icon icon-plus" onClick={() => onAddSubcategory() }></span>
+                <span className="CategoryItem__add-icon icon-plus" onClick={() => onAddSubcategory(id) }></span>
             </div>
 
             <Subcategories

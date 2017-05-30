@@ -4,7 +4,7 @@
 
 import { connect } from 'react-redux';
 import Categories from './../Categories';
-import { addCategory, addSubcategory, deleteCategory, editCategory, deleteTask } from './../actions';
+import { addCategory, deleteCategory, deleteTask, showModal } from './../actions';
 
 const getActiveTreeById = (id, categories) => {
     let active = [];
@@ -31,15 +31,15 @@ const mapDispatchToProps = (dispatch) => {
       onAddCategory: (text) => {
           dispatch(addCategory(text));
       },
-      onAddSubcategory: () => {
-          dispatch(addSubcategory());
+      onAddSubcategory: (id) => {
+          dispatch(showModal(id, 'add'))
       },
       onDeleteCategory: (id) => {
           dispatch(deleteCategory(id));
           dispatch(deleteTask(id));
       },
-      onEditCategory: () => {
-          dispatch(editCategory());
+      onEditCategory: (id) => {
+          dispatch(showModal(id, 'edit'));
       }
   }
 };
