@@ -49,8 +49,8 @@ describe('Actions', () => {
         expect(actions.filterTask('SHOW_ALL')).toEqual({type: 'FILTER_TASKS', filter: 'SHOW_ALL'});
     });
 
-    it('should return FILTER_TASKS action', () => {
-        expect(actions.showModal(2, 'EDIT')).toEqual({type: 'FILTER_TASKS', id: 2, mode: 'EDIT'});
+    it('should return SHOW_MODAL action', () => {
+        expect(actions.showModal(2, 'EDIT')).toEqual({type: 'SHOW_MODAL', id: 2, mode: 'EDIT'});
     });
 
     it('should return HIDE_MODAL action', () => {
