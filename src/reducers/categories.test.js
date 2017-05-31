@@ -34,10 +34,12 @@ describe('[Reducer] Categories', () => {
 
     it('reducer for EDIT_CATEGORY', () => {
         let state = [
-            {id: 10, name: "Category 10", parentId: null }
+            {id: 10, name: "Category 10", parentId: null },
+            {id: 11, name: "Category 11", parentId: null }
         ];
         const state2 = [
-            {id: 10, name: "Category 100", parentId: null }
+            {id: 10, name: "Category 100", parentId: null },
+            {id: 11, name: "Category 11", parentId: null }
         ];
 
         state = categories(state, { type: 'EDIT_CATEGORY', name: 'Category 100', id: 10});
