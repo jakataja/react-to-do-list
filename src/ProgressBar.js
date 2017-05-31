@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React  from 'react';
 import './ProgressBar.css';
 
 const ProgressBar = ({ progress }) => (
@@ -10,7 +10,5 @@ const ProgressBar = ({ progress }) => (
         ></div>
     </section>
 );
-
-
 
 export default ProgressBar;
