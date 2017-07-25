@@ -15,7 +15,7 @@ const TaskItem = ({id, name, categoryId, isDone, onTaskDone}) => (
                    className="task-list__item-checkbox"
                    checked={isDone}
                    onChange={ () => onTaskDone(id) }
-            /> To-do Item: {name}
+            />{name}
         </label>
         <Link to={`${categoryId}/task/${id}` }  ><span className="icon-edit"></span></Link>
     </li>
