@@ -15,10 +15,12 @@ const Main = () => {
       <div className="App">
           <UndoRedo />
         <section className="App-header">
-          <div>
-            <h2>To-Do List</h2>
-          </div>
-          <FilterContainer />
+            <div className="App-header__container">
+              <div>
+                <h2>TO . DO . LIST</h2>
+              </div>
+              <FilterContainer />
+            </div>
         </section>
         <ProgressBarContainer />
 
