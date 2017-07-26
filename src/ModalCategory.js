@@ -29,11 +29,8 @@ const ModalCategory = ({ id, name, isActive, type, onSubmitEditCategory, onSubmi
                 />
             </div>
             <div className="Modal-footer">
-                <button type="button" onClick={ handleCancel }>Cancel</button>
-                <button type="button"
-                        onClick={ handleSubmit }
-                >Ok
-                </button>
+                <button type="button" className="Modal-btn-ok" onClick={ handleSubmit }>Ok</button>
+                <button type="button" className="Modal-btn-cancel" onClick={ handleCancel }>Cancel</button>
             </div>
         </div>
 
