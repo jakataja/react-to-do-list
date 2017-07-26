@@ -1,5 +1,7 @@
-.App {
+@import 'common.scss';
 
+.App {
+  background: $gray-very-light;
 }
 
 .App-logo {
@@ -8,15 +10,18 @@
 }
 
 .App-header {
-  align-items: center;
-  background-color: #ededed;
-  color: #000;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 20px;
-  width: 100%;
+  background-color: $gray-dark;
+
+  &__container {
+    align-items: center;
+    color: $gray-very-light;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+    width: 100%;
+  }
 }
 
 .App-intro {
@@ -43,15 +48,91 @@
 }
 
 .search__done {
-  margin-right: 20px;
+  margin-right: 60px;
 }
 
 .search__box {
 
+  & input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px $primary solid;
+    color: $gray-light;
+    padding: 5px;
+
+    @include placeholder($gray);
+  }
 }
 
 .view-container {
   display: flex;
   justify-content: flex-start;
+  padding: 20px;
   width: 100%;
+}
+
+.search {
+
+  &__switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 28px;
+    top: 2px;
+
+    &:before {
+      content: 'Show done';
+      color: $primary-light;
+      font-weight: 700;
+      position: absolute;
+      right: 54px;
+      width: 80px;
+      top: 4px;
+    }
+  }
+
+  &__switch input {
+    display: none;
+  }
+
+  &__slider {
+    border-radius: 2px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fafafa;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  &__slider:before {
+    border-radius: 2px;
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #e0e0e0;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + &__slider {
+    //background-color: #2196F3;
+  }
+
+  input:focus + &__slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + &__slider:before {
+    background-color: $primary-light;
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
 }
