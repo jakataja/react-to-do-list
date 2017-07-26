@@ -1,0 +1,40 @@
+@mixin placeholder($color) {
+
+  &::-webkit-input-placeholder { /* Chrome */
+    color: $color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+    opacity: 1;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+:focus {
+  outline: 0;
+}
+
+// colors
+
+$white: #fff;
+
+$primary-light: #cddc39;
+$primary: #afb42b;
+$primary-dark: #827717;
+
+$secondary-light: #ffc107;
+$secondary: #ffa000;
+$secondary-dark: #ff6f00;
+
+$gray-very-light: #fafafa;
+$gray-light: #e0e0e0;
+$gray: #9e9e9e;
+$gray-dark: #424242;

@@ -1,8 +1,10 @@
+@import 'common.scss';
+
 .Modal {
   background: #fff;
   border: 1px #aaa solid;
-  border-radius: 5px;
-  padding: 20px;
+  border-radius: 2px;
+  //padding: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -12,18 +14,42 @@
   width: 400px;
 
   &-title {
-    padding-bottom: 10px;
+    background: $gray-dark;
+    border-radius: 2px 2px 0 0;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 20px;
   }
 
   &-content {
-    padding-bottom: 10px;
+    padding: 20px ;
   }
 
   &-footer {
-
+    padding: 0 20px 20px;
   }
 
   &-input {
+    border: 0;
+    border-bottom: 1px solid $secondary;
+    color: $gray-dark;
+    padding: 5px;
     width: 100%;
   }
+
+  &-btn-ok,
+  &-btn-cancel {
+    border: 1px solid $secondary;
+    border-radius: 2px;
+    background: $secondary;
+    color: #fff;
+    padding: 5px 13px;
+  }
+
+  &-btn-cancel {
+    background: #fff;
+    color: $secondary;
+    margin-left: 5px;
+  }
+
 }
