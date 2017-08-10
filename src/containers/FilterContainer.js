@@ -23,10 +23,12 @@ let FilterContainer = ({ dispatch }) => {
     return(
         <div className="search-wrapper">
             <div className="search__done">
-                <label><input type="checkbox"
+                <label className="search__switch">
+                    <input type="checkbox"
                     onChange={ handleChange }
                     defaultChecked={false}
-                /> Show done</label>
+                    /><div className="search__slider"></div>
+                    </label>
             </div>
             <div className="search__box">
                 <input type="text" placeholder="Search"
